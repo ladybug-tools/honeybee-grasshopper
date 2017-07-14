@@ -7,28 +7,29 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-epw2wea
-
--
+Sky with certain illuminance.
 
     Args:
-        _epwFile = Fullpath to epw weather file.
+        _value: Desired value for sky horizontal illuminance in lux
+            (default: 10000).
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        wea: A wea object from epw file.
+        sky: Honeybee sky. You can use this sky to create a grid-based daylight
+            recipe.
+
 """
 
-ghenv.Component.Name = "HoneybeePlus_Wea"
-ghenv.Component.NickName = 'Wea'
+ghenv.Component.Name = "HoneybeePlus_Certain Illuminance"
+ghenv.Component.NickName = 'certainIllum'
 ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
-ghenv.Component.AdditionalHelpFromDocStrings = "3"
+ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from ladybug.wea import Wea
+    from honeybee.radiance.sky.certainIlluminance import CertainIlluminanceLevel
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-if _epwFile:
-    wea = Wea.fromEpwFile(_epwFile)
+_value_ = _value_ or 10000
+sky = CertainIlluminanceLevel(_value_)
+print sky.toRadString()

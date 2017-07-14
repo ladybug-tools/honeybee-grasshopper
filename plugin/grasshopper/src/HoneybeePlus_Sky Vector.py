@@ -16,7 +16,7 @@ Sky Vector.
         _month_: Input a number to indicate month (1..12) (default: 6).
         _day_: Input a number to indicate day (1..31) (default: 21).
         _hour_: Input a number to indicate hour (0..23) (default: 12).
-        _skyDensity_: A positive intger for sky density. [1] Tregenza Sky,
+        _density_: A positive intger for sky density. [1] Tregenza Sky,
             [2] Reinhart Sky, etc. (Default: 1)
     Returns:
         readMe!: Reports, errors, warnings, etc.
@@ -25,20 +25,16 @@ Sky Vector.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Vector"
 ghenv.Component.NickName = 'skyVector'
-ghenv.Component.Message = 'VER 0.0.01\nJAN_23_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
-ghenv.Component.AdditionalHelpFromDocStrings = "1"
+ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
     from honeybee.radiance.sky.skymatrix import SkyMatrix
-    from ladybug.dt import LBDateTime
+    from ladybug.dt import DateTime
 except ImportError as e:
-    msg = '\nFailed to import honeybee. Did you install honeybee on your machine?' + \
-            '\nYou can download the installer file from github: ' + \
-            'https://github.com/ladybug-analysis-tools/honeybee-plus/tree/master/plugin/grasshopper/samplefiles' + \
-            '\nOpen an issue on github if you think this is a bug:' + \
-            ' https://github.com/ladybug-analysis-tools/honeybee-plus/issues'
+    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
         
     raise ImportError('{}\n\t{}'.format(msg, e))
 
@@ -47,8 +43,8 @@ if _wea:
     _month_ = _month_ or 6
     _day_ = _day_ or 21
     _hour_ = _hour_ or 12
-    dt = LBDateTime(_month_, _day_, _hour_)
-    _skyDensity_ = _skyDensity_ or 1
+    dt = DateTime(_month_, _day_, _hour_)
+    _density_ = _density_ or 1
     
-    skyVec = SkyMatrix(_wea, _skyDensity_, north_, (int(dt.HOY),))
+    skyVec = SkyMatrix(_wea, _density_, north_, (int(dt.hoy),))
     

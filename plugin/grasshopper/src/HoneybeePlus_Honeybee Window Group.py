@@ -33,10 +33,11 @@ group.
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Group"
 ghenv.Component.NickName = 'HBWinGroup'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_05_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_06_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
+
 
 try:
     from honeybee.hbdynamicsurface import HBDynamicSurface
@@ -56,5 +57,9 @@ if _name and len(_geo)!=0 and _geo[0]!=None:
         radProp_ = RadianceProperties()
 
     epProp_ = None
+    _type_ = 5  # in the interface we use dynamic surfaces only for fenestration
+    isTypeSetByUser = True
+
     HBWinGroup = HBDynamicSurface.fromGeometry(
-        _name, _geo, isNameSetByUser, radProp_, epProp_, states_, group=True)
+        _name, _geo, _type_, isNameSetByUser, isTypeSetByUser, radProp_,
+        epProp_, states_, group=True)

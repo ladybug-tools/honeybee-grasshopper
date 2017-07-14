@@ -15,7 +15,7 @@ Sky Matrix.
         north_: An angle in degrees between 0-360 to indicate north direction
             (Default: 0).
         _wea: Ladybug Wea object.
-        _skyDensity_: A positive intger for sky density. [1] Tregenza Sky,
+        _density_: A positive intger for sky density. [1] Tregenza Sky,
             [2] Reinhart Sky, etc. (Default: 1)
         hoys_: Optional list of hours for generating the sky matrix (Default: 0..8759)
     Returns:
@@ -25,21 +25,16 @@ Sky Matrix.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Matrix"
 ghenv.Component.NickName = 'skyMatrix'
-ghenv.Component.Message = 'VER 0.0.01\nDEC_05_2016'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
-ghenv.Component.AdditionalHelpFromDocStrings = "1"
+ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
     from honeybee.radiance.sky.skymatrix import SkyMatrix
 except ImportError as e:
-    msg = '\nFailed to import honeybee. Did you install honeybee on your machine?' + \
-            '\nYou can download the installer file from github: ' + \
-            'https://github.com/ladybug-analysis-tools/honeybee-plus/tree/master/plugin/grasshopper/samplefiles' + \
-            '\nOpen an issue on github if you think this is a bug:' + \
-            ' https://github.com/ladybug-analysis-tools/honeybee-plus/issues'
-        
-    raise ImportError('{}\n\t{}'.format(msg, e))
+    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+
 
 if _wea:
-    skyMTX = SkyMatrix(_wea, _skyDensity_, north_, hoys_)
+    skymtx = SkyMatrix(_wea, _density_, north_, hoys_)

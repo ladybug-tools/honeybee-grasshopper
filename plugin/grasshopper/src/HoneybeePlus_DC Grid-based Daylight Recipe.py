@@ -28,16 +28,16 @@ Use this recipe to set up annual daylight analysis.
 
 ghenv.Component.Name = "HoneybeePlus_DC Grid-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_04_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_08_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 #import honeybee
-#reload(honeybee.radiance.recipe.dc.gridbased)
+#reload(honeybee.radiance.recipe.daylightcoeff.gridbased)
 
 try:
-    from honeybee.radiance.recipe.dc.gridbased import DaylightCoeffGridBased
+    from honeybee.radiance.recipe.daylightcoeff.gridbased import DaylightCoeffGridBased
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
