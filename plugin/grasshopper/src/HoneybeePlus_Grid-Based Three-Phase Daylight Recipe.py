@@ -12,27 +12,29 @@ Three-pahse daylight Recipe.
 -
 
     Args:
-        _skyMTX: A sky matrix or a sky vector. Find honeybee skies under 02::Daylight::Light Sources.
+        _skymtx: A sky matrix or a sky vector. Find honeybee skies under 02::Daylight::Light Sources.
         _analysisGrids: A list of Honeybee analysis grids.
         _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
-            parameters node under 03::Daylight::Recipes.
+        _vmtxPar_: RfluxMtx parameters for view coefficient calculation.
+        _dmtxPar_: RfluxMtx parameters for daylight coefficient calculation.
+        reuseVmtx_: A boolean to indicate if you want the analysis to use the view
+            coeff matrix results from the previous study if available.
+        reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
+            coeff matrix results from the previous study if available.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance
-            Analysis to run a annual analysis.
+        analysisRecipe: Three-pahse analysis recipe. Connect this recipe to Run
+            Radiance Analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Three-Phase Daylight Recipe"
 ghenv.Component.NickName = 'threePhaseGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_04_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
-ghenv.Component.AdditionalHelpFromDocStrings = "3"
+ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
-#import honeybee
-#reload(honeybee.radiance.recipe.threephase.gridbased)
 
 try:
     from honeybee.radiance.recipe.threephase.gridbased import ThreePhaseGridBased
@@ -40,9 +42,9 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _skyMTX and _analysisGrid:
-    reuseDaylightMTX_ = True if reuseDaylightMTX_ is None else reuseDaylightMTX_
-    reuseViewMTX_ = True if reuseViewMTX_ is None else reuseViewMTX_
+if _skymtx and _analysisGrids:
+    reuseVmtx_ = reuseVmtx_ or True
+    reuseDmtx_ = reuseDmtx_ or True
     analysisRecipe = ThreePhaseGridBased(
-        _skyMTX, _analysisGrid, _analysisType_, _viewMTXPar_, _DaylightMTXPar_,
-        reuseViewMTX_, reuseDaylightMTX_)
+        _skymtx, _analysisGrids, _analysisType_, _vmtxPar_, _dmtxPar_,
+        reuseVmtx_, reuseDmtx_)

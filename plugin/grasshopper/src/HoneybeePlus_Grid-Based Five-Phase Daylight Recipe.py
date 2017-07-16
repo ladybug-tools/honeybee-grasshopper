@@ -7,8 +7,7 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Daylight Coefficient Grid-based Daylight Recipe.
-Use this recipe to set up annual daylight analysis.
+Five-pahse daylight Recipe.
 
 -
 
@@ -19,31 +18,31 @@ Use this recipe to set up annual daylight analysis.
             [2] luminance (Candela).
         _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
-        reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
-            coeff matrix results from the previous study if available.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance
-            Analysis to run a annual analysis.
+        analysisRecipe: Five-pahse analysis recipe. Connect this recipe to Run
+            Radiance Analysis.
 """
 
-ghenv.Component.Name = "HoneybeePlus_DC Grid-based Daylight Recipe"
-ghenv.Component.NickName = 'DCoeffGBRecipe'
+ghenv.Component.Name = "HoneybeePlus_Grid-Based Five-Phase Daylight Recipe"
+ghenv.Component.NickName = 'fivePhaseGBRecipe'
 ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
-ghenv.Component.AdditionalHelpFromDocStrings = "3"
+ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
 #import honeybee
-#reload(honeybee.radiance.recipe.daylightcoeff.gridbased)
+#reload(honeybee.radiance.recipe.fivephase.gridbased)
 
 try:
-    from honeybee.radiance.recipe.daylightcoeff.gridbased import DaylightCoeffGridBased
+    from honeybee.radiance.recipe.fivephase.gridbased import FivePhaseGridBased
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
 if _skymtx and _analysisGrids:
+    reuseVmtx_ = reuseVmtx_ or True
     reuseDmtx_ = reuseDmtx_ or True
-    analysisRecipe = DaylightCoeffGridBased(
-        _skymtx, _analysisGrids, _analysisType_, _radiancePar_, reuseDmtx_)
+    analysisRecipe = FivePhaseGridBased(
+        _skymtx, _analysisGrids, _analysisType_, _vmtxPar_, _dmtxPar_,
+        reuseVmtx_, reuseDmtx_)

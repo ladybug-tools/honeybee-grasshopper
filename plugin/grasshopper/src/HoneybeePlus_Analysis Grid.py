@@ -19,7 +19,7 @@ Analysis Grid.
             direction of the respective test point in testPoints. If only one
             value is provided it will be used for all the test points. If no value
             is provided (0, 0, 1) will be assigned for all the vectors.
-        windowGroups: An optional list of windowGroups. This input is only
+        wGroups_: An optional list of window groups. This input is only
             important for multi-phase daylight simulation to avoid unnecessary
             view matrix calculations. If this input is left empty for multi-phase
             daylight recipes the view matrix will be calculated for each analysis
@@ -32,7 +32,7 @@ Analysis Grid.
 
 ghenv.Component.Name = "HoneybeePlus_Analysis Grid"
 ghenv.Component.NickName = 'analysisGrid'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_04_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -45,4 +45,4 @@ except ImportError as e:
 
 if _testPoints:
     analysisGrid = AnalysisGrid.fromPointsAndVectors(_testPoints, ptsVectors_,
-        _name_, windowGroups_)
+        _name_, wGroups_)
