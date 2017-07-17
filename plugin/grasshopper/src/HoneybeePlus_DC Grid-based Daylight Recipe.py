@@ -44,6 +44,6 @@ except ImportError as e:
 
 
 if _skymtx and _analysisGrids:
-    reuseDmtx_ = reuseDmtx_ or True
+    reuseDmtx_ = bool(reuseDmtx_)
     analysisRecipe = DaylightCoeffGridBased(
         _skymtx, _analysisGrids, _analysisType_, _radiancePar_, reuseDmtx_)

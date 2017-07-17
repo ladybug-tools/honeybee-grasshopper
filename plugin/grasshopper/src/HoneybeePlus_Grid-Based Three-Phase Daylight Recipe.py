@@ -24,17 +24,19 @@ Three-pahse daylight Recipe.
             coeff matrix results from the previous study if available.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Three-pahse analysis recipe. Connect this recipe to Run
-            Radiance Analysis.
+        analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance
+            Analysis to run a annual analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Three-Phase Daylight Recipe"
 ghenv.Component.NickName = 'threePhaseGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_16_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
+#import honeybee
+#reload(honeybee.radiance.recipe.threephase.gridbased)
 
 try:
     from honeybee.radiance.recipe.threephase.gridbased import ThreePhaseGridBased
@@ -43,8 +45,8 @@ except ImportError as e:
 
 
 if _skymtx and _analysisGrids:
-    reuseVmtx_ = reuseVmtx_ or True
-    reuseDmtx_ = reuseDmtx_ or True
+    reuseVmtx_ = bool(reuseVmtx_)
+    reuseDmtx_ = bool(reuseDmtx_)
     analysisRecipe = ThreePhaseGridBased(
         _skymtx, _analysisGrids, _analysisType_, _vmtxPar_, _dmtxPar_,
         reuseVmtx_, reuseDmtx_)

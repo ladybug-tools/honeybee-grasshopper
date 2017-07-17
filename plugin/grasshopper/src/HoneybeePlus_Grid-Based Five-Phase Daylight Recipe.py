@@ -26,12 +26,14 @@ Five-pahse daylight Recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Five-Phase Daylight Recipe"
 ghenv.Component.NickName = 'fivePhaseGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_16_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
 #import honeybee
+#reload(honeybee.radiance.recipe.daylightcoeff.gridbased)
+#reload(honeybee.radiance.recipe.threephase.gridbased)
 #reload(honeybee.radiance.recipe.fivephase.gridbased)
 
 try:
@@ -41,8 +43,8 @@ except ImportError as e:
 
 
 if _skymtx and _analysisGrids:
-    reuseVmtx_ = reuseVmtx_ or True
-    reuseDmtx_ = reuseDmtx_ or True
+    reuseVmtx_ = bool(reuseVmtx_)
+    reuseDmtx_ = bool(reuseDmtx_)
     analysisRecipe = FivePhaseGridBased(
         _skymtx, _analysisGrids, _analysisType_, _vmtxPar_, _dmtxPar_,
         reuseVmtx_, reuseDmtx_)
