@@ -15,7 +15,8 @@ Solar Access Recipe.
         _sunVectors: A list of vectors that represents sun vectors. You can use
             Ladybug sunpath to generate the vectors for any time of the year. If
             you're generating the vectors in a different way make sure that the
-            vectors are looking downwards from the sun (e.g. z = 0).
+            vectors are looking downwards from the sun (e.g. z < 0).
+        _hoys: A list of hours of the year.
         _analysisGrids: List of honeybee analysis grids. Use Analysis grid component
             which you can find under 00 :: Create to create them.
         _timestep_: Timstep for sun vectors. Default is 1 which means each sun vector
@@ -29,7 +30,7 @@ Solar Access Recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Solar Access Recipe"
 ghenv.Component.NickName = 'solarAccessRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_05_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_17_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -40,5 +41,8 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _sunVectors and _sunVectors[0] != None and _analysisGrids:
-    analysisRecipe = SolarAccessGridBased(_sunVectors, _analysisGrids, _timestep_)
+if _sunVectors and _sunVectors[0] != None and \
+    _hoys and _hoys[0] != None and _analysisGrids:
+    # set a sunlight hours analysis recipe together if there are points
+    analysisRecipe = SolarAccessGridBased(
+        _sunVectors, _hoys, _analysisGrids, _timestep_)
