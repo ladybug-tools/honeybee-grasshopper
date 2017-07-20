@@ -12,12 +12,10 @@ Occupancy Schedule from hourly values.
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
-        _index_: An integer to pick the sensor from the analysis grid (default: 0).
+        _values: Schedule values.
+        hoys_: List of hours of the year for this values (default: 0-8759).
     Returns:
-        position: Position of the sensor
-        sensor: Sensor object. Use this sensor to generate blind schedules for
-            annual daylight analysis.
+        schedule: Honeybee Schedule.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule"
@@ -33,4 +31,4 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _values:
-    schedule = Schedule.fromAnalysisPeriod()
+    schedule = Schedule(_values, hoys_)
