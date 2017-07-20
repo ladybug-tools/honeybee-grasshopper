@@ -27,11 +27,14 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
         dmtxOptPar_: Use this input to set other Radiance parameters for daylight
             matrix calculation as needed. You must follow Radiance's standard syntax
             (e.g. -ps 1 -lw 0.01).
-    
+        smtxOptPar_: Use this input to set other Radiance parameters for sun
+            matrix calculation as needed. You must follow Radiance's standard syntax
+            (e.g. -ps 1 -lw 0.01).
     Returns:
         radPar: Radiance parameters.
         vmtxPar: Radiance parameters for view matrix calculation.
         dmtxPar: Radiance parameters for daylight matrix calculation.
+        smtxPar: Radiance parameters for direct sun matrix calculation.
 """
 
 ghenv.Component.Name = "Honeybee_Radiance Parameters Image-based"
@@ -50,7 +53,7 @@ except ImportError as e:
 _quality_ = _quality_ or 0
 _recipeType_ = _recipeType_ or 0
 
-radPar, vmtxPar, dmtxPar = \
+radPar, vmtxPar, dmtxPar, smtxPar = \
     param.getRadianceParametersImageBased(_quality_, _recipeType_)
     
 if radOptPar_ and radPar:
@@ -61,3 +64,6 @@ if vmtxOptPar_ and vmtxPar:
 
 if dmtxOptPar_ and dmtxPar:
     dmtxPar.importParameterValuesFromString(dmtxOptPar_)
+
+if smtxOptPar_ and smtxPar:
+    smtxPar.importParameterValuesFromString(smtxOptPar_)    
