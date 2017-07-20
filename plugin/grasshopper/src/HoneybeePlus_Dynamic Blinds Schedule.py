@@ -12,17 +12,27 @@ Dynamic Blinds Schedule
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
-        _index_: An integer to pick the sensor from the analysis grid (default: 0).
+        _sensor: A single sensor from the analsysi Grid.
+        _blindStates_: Suggested window groups states combinations. Default is
+            the longest combination between all the window groups.
+        _logic_: Blinds logic. You can use ill, ill_dir and h(our) as input
+            values. Default is ill > 3000. You can also overwrite the logic
+            by opening the components and edit 'checkLogic' function.
+        data_: optional data to pass along side the values which can be used
+            to set-up the logic. This input yet needs to be tested.
     Returns:
-        position: Position of the sensor
-        sensor: Sensor object. Use this sensor to generate blind schedules for
-            annual daylight analysis.
+        blindStates: Selected blind states based on input logic.
+        blindStIndex: Index of selected blind state from input _blindStates_.
+        illumTotal: Sensor total illuminance values.
+        illumDirect: Sensor direct illuminance values. This value won't be available
+            for 3-Phase recipe.
+        success: A boolean that shows if the logic is satisfied by using the current
+            combinations of shadings.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -32,7 +42,7 @@ import copy
 if _sensor:
     sensor = _sensor
     
-    # print the details to help user set up the 
+    # print the details to help user set up the combination
     print(sensor.details)
     
     if _logic_:
@@ -47,12 +57,11 @@ if _sensor:
     else:
         setattr(sensor, 'logic', sensor._logic)
 
-#    states = tuple(eval(t) for t in _combs_)
-#    print states
-    results = sensor.blindsState(sensor.hoys, _combs_)
+    
+    results = sensor.blindsState(sensor.hoys, _blindStates_)
     if results:
-        blinds_state = (str(d) for d in results[0])  # tuple is not a standard GH Type
-        blinds_index = results[1]
-        illum = results[2]
-        illum_dir = results[3]
+        blindStates = (str(d) for d in results[0])  # tuple is not a standard GH Type
+        blindStIndex = results[1]
+        illumTotal = results[2]
+        illumDirect = results[3]
         success = results[4]

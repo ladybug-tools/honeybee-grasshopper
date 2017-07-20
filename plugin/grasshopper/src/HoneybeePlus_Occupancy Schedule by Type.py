@@ -7,21 +7,18 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Occupancy Schedule from hourly values.
+Typical Occupancy Schedule based on space program.
 
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
-        _index_: An integer to pick the sensor from the analysis grid (default: 0).
+        _type_: 0 > Office
     Returns:
-        position: Position of the sensor
-        sensor: Sensor object. Use this sensor to generate blind schedules for
-            annual daylight analysis.
+        schedule: Annual schedule.
 """
 
-ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule"
-ghenv.Component.NickName = 'occSchdule'
+ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule by Type"
+ghenv.Component.NickName = 'occSchduleByType'
 ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
@@ -32,5 +29,5 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-if _values:
-    schedule = Schedule.fromAnalysisPeriod()
+_type_ = _type_ or 0
+schedule = Schedule.fromAnalysisPeriod()
