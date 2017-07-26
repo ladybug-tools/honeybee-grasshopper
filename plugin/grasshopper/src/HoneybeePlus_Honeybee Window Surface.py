@@ -13,8 +13,8 @@ Honeybee Window Surface
 
     Args:
         _geo: A list of input geometry.
-        name_: A name for this surface. If the name is not provided Honeybee will
-            assign a random name to the surface.
+        names_: A name or a list of names for input geometry. If the name is not
+            provided Honeybee will assign a random name to the surface.
         radMat_: A Radiance material. If radiance matrial is not provided the
             component will use the type to assign the default material 
             (%60 transmittance)for the surface.
@@ -28,7 +28,7 @@ Honeybee Window Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Surface"
 ghenv.Component.NickName = 'HBWinSrf'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_05_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_25_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -41,7 +41,7 @@ except ImportError as e:
 
 if len(_geo)!=0 and _geo[0]!=None:
     isNameSetByUser = False
-    if name_:
+    if names_:
         isNameSetByUser = True
 
     if radMat_:
@@ -52,4 +52,4 @@ if len(_geo)!=0 and _geo[0]!=None:
         radProp_ = RadianceProperties()
 
     epProp_ = None
-    HBWinSrf = HBFenSurface.fromGeometry(name_, _geo, isNameSetByUser, radProp_, epProp_)
+    HBWinSrf = HBFenSurface.fromGeometry(names_, _geo, isNameSetByUser, radProp_, epProp_)

@@ -13,8 +13,8 @@ Honeybee Surface
 
     Args:
         _geo: A list of input geometries.
-        name_: A name for this surface. If the name is not provided Honeybee will
-            assign a random name to the surface.
+        names_: A name or a list of names for input geometry. If the name is not
+            provided Honeybee will assign a random name to the surface.
         _type_: Surface type. Surface type will be used to set the material and
             construction for the surface if they are not assigned by user.
             0   Wall           0.5 UndergroundWall
@@ -41,10 +41,13 @@ Honeybee Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Surface"
 ghenv.Component.NickName = 'HBSurface'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_05_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_25_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
+
+import honeybee
+reload(honeybee.hbsurface)
 
 try:
     from honeybee.hbsurface import HBSurface
@@ -55,7 +58,7 @@ except ImportError as e:
 
 if len(_geo)!=0 and _geo[0]!=None:
     isNameSetByUser = False
-    if name_:
+    if names_:
         isNameSetByUser = True
         
     isTypeSetByUser = True
@@ -66,5 +69,5 @@ if len(_geo)!=0 and _geo[0]!=None:
     
     epProp_ = None
     
-    HBSrf = HBSurface.fromGeometry(name_, _geo, _type_, isNameSetByUser,
+    HBSrf = HBSurface.fromGeometry(names_, _geo, _type_, isNameSetByUser,
                                    isTypeSetByUser, radProp_, epProp_)
