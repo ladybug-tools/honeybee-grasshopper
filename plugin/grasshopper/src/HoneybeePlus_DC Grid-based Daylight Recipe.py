@@ -17,8 +17,8 @@ Use this recipe to set up annual daylight analysis.
         _analysisGrids: A list of Honeybee analysis grids.
         _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
-            parameters node under 03::Daylight::Recipes.
+        _dmtxPar_: Radiance parameters for Daylight matrix calculation. Find
+            Radiance parameters node under 03::Daylight::Recipe.
         reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
             coeff matrix results from the previous study if available.
     Returns:
@@ -29,7 +29,7 @@ Use this recipe to set up annual daylight analysis.
 
 ghenv.Component.Name = "HoneybeePlus_DC Grid-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_26_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -46,4 +46,4 @@ except ImportError as e:
 if _skymtx and _analysisGrids:
     reuseDmtx_ = bool(reuseDmtx_)
     analysisRecipe = DaylightCoeffGridBased(
-        _skymtx, _analysisGrids, _analysisType_, _radiancePar_, reuseDmtx_)
+        _skymtx, _analysisGrids, _analysisType_, _dmtxPar_, reuseDmtx_)

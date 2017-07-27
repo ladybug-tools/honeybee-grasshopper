@@ -17,7 +17,7 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
 -
 
     Args:
-        _quality_: 0 > low, 1 > Medium, 2 > High (default: 0).
+        _complexity_: 0 > low, 1 > Medium, 2 > High
         _recipeType: 0 > Point-in-time, 1 > Daylight Coeff., 2 > 3Phase, 3 > 5Phase
         radOptPar_: Use this input to set other Radiance parameters as needed.
             You must follow Radiance's standard syntax (e.g. -ps 1 -lw 0.01)
@@ -30,18 +30,16 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
         smtxOptPar_: Use this input to set other Radiance parameters for sun
             matrix calculation as needed. You must follow Radiance's standard syntax
             (e.g. -ps 1 -lw 0.01).
-
     Returns:
         radPar: Radiance parameters.
         vmtxPar: Radiance parameters for view matrix calculation.
         dmtxPar: Radiance parameters for daylight matrix calculation.
         smtxPar: Radiance parameters for direct sun matrix calculation.
-        
 """
 
-ghenv.Component.Name = "Honeybee_Radiance Parameters Grid-based"
-ghenv.Component.NickName = 'RADParGridBased'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
+ghenv.Component.Name = "HoneybeePlus_Radiance Parameters Image-based"
+ghenv.Component.NickName = 'RADParImageBased'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_26_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
@@ -52,11 +50,11 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
     
 
-_quality_ = _quality_ or 0
+_complexity_ = _complexity_ or 0
 _recipeType_ = _recipeType_ or 0
 
 radPar, vmtxPar, dmtxPar, smtxPar = \
-    param.getRadianceParametersGridBased(_quality_, _recipeType_)
+    param.getRadianceParametersImageBased(_complexity_, _recipeType_)
     
 if radOptPar_ and radPar:
     radPar.importParameterValuesFromString(radOptPar_)
@@ -68,4 +66,4 @@ if dmtxOptPar_ and dmtxPar:
     dmtxPar.importParameterValuesFromString(dmtxOptPar_)
 
 if smtxOptPar_ and smtxPar:
-    smtxPar.importParameterValuesFromString(smtxOptPar_)
+    smtxPar.importParameterValuesFromString(smtxOptPar_)    
