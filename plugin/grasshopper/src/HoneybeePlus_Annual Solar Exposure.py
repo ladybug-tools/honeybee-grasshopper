@@ -28,6 +28,7 @@ the points in the grid should fail this measure.
 
     Returns:
         Success: True if you meet target area based on target hours.
+        ASE: Number of hours of annual solar exposure for each test point.
         perArea: Percentage area that doesn't meet the target.
         prblmPts: A list of problematic test points.
         prblmHrs: Problematic hours for each point.
@@ -35,13 +36,20 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Solar Exposure"
 ghenv.Component.NickName = 'ASE'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
+try:
+    import ladybug.geometry as lg
+except ImportError as e:
+    raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
 if _analysisGrid:
-    success, perArea, prblmPts, prblmHrs = _analysisGrid.annualSolarExposure(
-         _threshold_, blindStates_, _occSchedule_, _targetHrs_, _targetArea_
+    states = _analysisGrid.parseBlindStates(blindStates_)
+    success, ASE, perArea, prblmPts, prblmHrs = _analysisGrid.annualSolarExposure(
+         _threshold_, states, _occSchedule_, _targetHrs_, _targetArea_
     )
+
+    prblmPts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblmPts)

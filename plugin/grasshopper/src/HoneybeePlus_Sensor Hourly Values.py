@@ -7,11 +7,12 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Maximum values for a grid.
+Hourly results for a sensor for several hours during the year.
+
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
+        _sensor: An analysis point/sensor.
         hoys_: An optional list of hours for hours of the year if you don't want
             the analysis to be calculated for all the hours.
         blindStates_: A list of blind states for light sources as tuples for
@@ -22,24 +23,30 @@ Maximum values for a grid.
             diret values if available and 2 returns sky + diffuse values if
             available.
     Returns:
-        values: A list of maximum values for each sensor.
+        values: List of values for hours of the year.
 """
 
-ghenv.Component.Name = "HoneybeePlus_Maximum Value"
-ghenv.Component.NickName = 'maxValue'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_27_2017'
+ghenv.Component.Name = "HoneybeePlus_Sensor Hourly Values"
+ghenv.Component.NickName = 'senHourlyValues'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
-if _analysisGrid:
+if _sensor:
     _modes = ('total', 'direct', 'diffuse')
     _mode_ = _mode_ or 0
+    hoys_ = hoys_ or _sensor.hoys
+
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
-    states = _analysisGrid.parseBlindStates(blindStates_)
-    print('Calculating max values from {} values.'.format(_modes[_mode_]))
+
+    states = _sensor.parseBlindStates(blindStates_)
+
+    print('Loading {} values for several hours.'.format(_modes[_mode_]))
+    
     if _mode_ < 2:
-        values = (v[_mode_] for v in _analysisGrid.maxValuesById(blindsStateIds=states))
+        values = (v[_mode_] for v in
+                  _sensor.combinedValuesById(hoys_, blindsStateIds=states))
     else:
-        cValues = _analysisGrid.maxValuesById(blindsStateIds=states)
+        cValues = _sensor.combinedValuesById(hoys_, blindsStateIds=states)
         values = (v[0] - v[1] for v in cValues)

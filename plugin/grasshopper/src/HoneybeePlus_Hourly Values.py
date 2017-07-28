@@ -7,18 +7,15 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Mass addition of values for a grid. This component is mostly useful for solar access
-and radiation studies.
+Hourly results for an analysis grid for a single hour of the year.
 
 -
 
     Args:
         _analysisGrid: An analysis grid output from run Radiance analysis.
         hoy_: An hour of the year (default: first available hour).
-        blindStates_: A list of blind states for light sources as tuples for
-            hours of the year. You can use Dynamic Blinds Schedule component
-            to generate this schedule. If left empty the first state of each
-            window group will be used.
+        blindState_: Blind states for light sources as a tuples. You can use
+            If left empty the first state of each window group will be used.
         _mode_: An integer between 0-2. 0 returns that total values, 1 returns
             diret values if available and 2 returns sky + diffuse values if
             available.
@@ -28,7 +25,7 @@ and radiation studies.
 
 ghenv.Component.Name = "HoneybeePlus_Hourly Values"
 ghenv.Component.NickName = 'hourlyValues'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_19_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_27_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -47,10 +44,10 @@ if _analysisGrid:
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
 
     try:
-        states = eval(blindStates_)
+        states = eval(blindState_)
     except Exception as e:
-        if blindStates_:
-            raise TypeError('Failed to read blindStates_:\n{}'.format(e))
+        if blindState_:
+            raise TypeError('Failed to read blindState_:\n{}'.format(e))
         states = None
     
     print('Loading {} values for {}.'.format(_modes[_mode_], DateTime.fromHoy(hoy_)))

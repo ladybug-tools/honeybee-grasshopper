@@ -13,8 +13,11 @@ Dynamic Blinds Schedule
 
     Args:
         _sensor: A single sensor from the analsysi Grid.
-        _blindStates_: Suggested window groups states combinations. Default is
-            the longest combination between all the window groups.
+        _blindCombs_: Suggested states combinations for sources. Default is
+            the longest combination between all the window groups. Put each
+            state as a tuple. Check the sensor output for sources and possible
+            states. For instance (0, 0, 1) indicates the first and second window
+            groups are at state 0 and the third window group is at state 1.
         _logic_: Blinds logic. You can use ill, ill_dir and h(our) as input
             values. Default is ill > 3000. You can also overwrite the logic
             by opening the components and edit 'checkLogic' function.
@@ -32,7 +35,7 @@ Dynamic Blinds Schedule
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_27_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -58,7 +61,8 @@ if _sensor:
         setattr(sensor, 'logic', sensor._logic)
 
     
-    results = sensor.blindsState(sensor.hoys, _blindStates_)
+    states = sensor.parseBlindStates(_blindCombs_)
+    results = sensor.blindsState(sensor.hoys, states)
     if results:
         blindStates = (str(d) for d in results[0])  # tuple is not a standard GH Type
         blindStIndex = results[1]

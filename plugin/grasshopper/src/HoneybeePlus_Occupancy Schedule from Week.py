@@ -21,11 +21,13 @@ Typical Occupancy Schedule based on typical week.
         _defValue_: Default value for occupancy hours (Default: 1).
     Returns:
         schedule: Annual schedule.
+        values: Annual hourly values for this schedule. Use this output to double
+            check the results. Use 3d chart to visualize the values.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule from Week"
 ghenv.Component.NickName = 'occSchduleWeek'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_21_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_27_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -37,3 +39,5 @@ except ImportError as e:
 
 schedule = Schedule.fromWorkdayHours(
     _occHours_, _offHours_, _weekend_, _defValue_)
+
+values = schedule.values

@@ -34,13 +34,14 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Spatial Daylight Autonomy"
 ghenv.Component.NickName = 'sDA'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_20_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 
 if _analysisGrid:
+    states = _analysisGrid.parseBlindStates(blindStates_)
     sDA, prblmHrs = _analysisGrid.spatialDaylightAutonomy(
-         _threshold_, blindStates_, _occSchedule_, _targetArea_
+         _threshold_, states, _occSchedule_, _targetArea_
     )
