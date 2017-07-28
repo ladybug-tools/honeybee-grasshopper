@@ -43,6 +43,7 @@ ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
     import ladybug.geometry as lg
+    import ladybug.output as output
 except ImportError as e:
     raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
@@ -53,3 +54,5 @@ if _analysisGrid:
     )
 
     prblmPts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblmPts)
+    # convert list of lists to data tree
+    prblmHrs = output.listToTree(prblmHrs, ghenv.Component.RunCount - 1)
