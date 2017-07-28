@@ -13,12 +13,8 @@ Image-based Recipe.
 
     Args:
         _sky: A radiance sky. Find honeybee skies under 02::Daylight::Light Sources.
-        _testPoints: A list or a datatree of points. Each branch of the datatree
-            will be considered as a point group.
-        ptsVectors_: A list or a datatree of vectors. Each vector represents the
-            direction of the respective test point in testPoints. If only one
-            value is provided it will be used for all the test points. If no value
-            is provided (0, 0, 1) will be assigned for all the vectors.
+        _views: A list of honeybee views. Use view components under 00::create
+            to create a view.
         _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
         _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
@@ -31,10 +27,10 @@ Image-based Recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Image-Based Recipe"
 ghenv.Component.NickName = 'imageBasedRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_05_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
-ghenv.Component.AdditionalHelpFromDocStrings = "1"
+ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
     from honeybee.radiance.recipe.pointintime.imagebased import ImageBased

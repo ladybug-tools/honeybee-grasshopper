@@ -7,40 +7,33 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Grid-based Recipe.
+Daylight factor Recipe.
 
 -
 
     Args:
-        _sky: A radiance sky. Find honeybee skies under 02::Daylight::Light Sources.
-        _analysisGrids: A list of analysis grids.
-        _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
-            [2] luminance (Candela).
+        _analysisGrids: A list list of analysis grids.
         _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Grid-based analysis recipe. Connect this recipe to
+        analysisRecipe: Daylight factor analysis recipe. Connect this recipe to
             Run Radiance Analysis to run a grid-based analysis.
 """
 
-ghenv.Component.Name = "HoneybeePlus_Grid-Based Recipe"
-ghenv.Component.NickName = 'gridBasedRecipe'
+ghenv.Component.Name = "HoneybeePlus_Daylight Factor Recipe"
+ghenv.Component.NickName = 'DFRecipe'
 ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
-ghenv.Component.AdditionalHelpFromDocStrings = "2"
+ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
-#import honeybee
-#reload(honeybee.radiance.recipe.pointintime.gridbased)
+
 try:
-    from honeybee.radiance.recipe.pointintime.gridbased import GridBased
+    from honeybee.radiance.recipe.daylightfactor.gridbased import GridBased
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _sky and _analysisGrids:
-    
-    # set a sunlight hours analysis recipe together if there are points
-    analysisRecipe = GridBased(_sky, _analysisGrids, _analysisType_,
-                               _radiancePar_)
+if _analysisGrids:
+    analysisRecipe = GridBased(_analysisGrids, _radiancePar_)
