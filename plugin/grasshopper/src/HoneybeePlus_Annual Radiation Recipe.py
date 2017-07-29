@@ -26,7 +26,7 @@ Annual radiation analysis
 
 ghenv.Component.Name = "HoneybeePlus_Annual Radiation Recipe"
 ghenv.Component.NickName = 'radiationRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_28_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_29_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -42,6 +42,6 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _skymtx and _analysisGrids:
+if _skymtx and _analysisGrids and _analysisGrids[0] != None:
     reuseDmtx_ = bool(reuseDmtx_)
     analysisRecipe = GridBased(_skymtx, _analysisGrids, _dmtxPar_, reuseDmtx_)

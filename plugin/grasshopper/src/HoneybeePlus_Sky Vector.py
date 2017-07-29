@@ -25,7 +25,7 @@ Sky Vector.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Vector"
 ghenv.Component.NickName = 'skyVector'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_29_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -46,5 +46,6 @@ if _wea:
     dt = DateTime(_month_, _day_, _hour_)
     _density_ = _density_ or 1
     
-    skyVec = SkyMatrix(_wea, _density_, north_, (int(dt.hoy),))
+    skyVec = SkyMatrix(_wea, _density_, north_, (int(dt.hoy),),
+                       suffix=str(int(dt.hoy)))
     

@@ -12,6 +12,9 @@ Sky Matrix.
 -
 
     Args:
+        name_: An optional suffix for sky name. The suffix will be added at the
+            end of the standard name. Use this input to customize the new and
+            avoid sky being overwritten by other skymatrix components.
         north_: An angle in degrees between 0-360 to indicate north direction
             (Default: 0).
         _wea: Ladybug Wea object.
@@ -25,7 +28,7 @@ Sky Matrix.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Matrix"
 ghenv.Component.NickName = 'skyMatrix'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_29_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -37,4 +40,4 @@ except ImportError as e:
 
 
 if _wea:
-    skymtx = SkyMatrix(_wea, _density_, north_, hoys_)
+    skymtx = SkyMatrix(_wea, _density_, north_, hoys_, suffix=name_)
