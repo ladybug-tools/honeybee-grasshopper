@@ -23,15 +23,15 @@ Run Radiance Analysis
         run_: Set to True to run the analysis. You can only run the analysis if
             _write is also set to True.
     Returns:
-        readMe!: Reports, errors, warnings, etc.
+        report: Reports, errors, warnings, etc.
         legendPar: Suggested legend parameters based on the recipe.
-        results: Results of the analysis. Results can be a list of images or
-            a list of grids based on the type of anlaysis.
+        outputs: Outputs of the analysis. Outputs can be a list of images or
+            a list of analysis grids.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_17_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_30_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -61,4 +61,12 @@ if _HBObjects and _analysisRecipe and _write:
 
     if _write and run_:
         if _analysisRecipe.run(batchFile, False):
-            results = _analysisRecipe.results()
+            try:
+                outputs = _analysisRecipe.results()
+            except StopIteration:
+                raise ValueError(
+                    'Length of the results is smaller than the analysis grids '
+                    'point count [{}]. In case you have changed the analysis'
+                    ' Grid you must re-calculate daylight/view matrix!'
+                    .format(_analysisRecipe.totalPointCount)
+                )

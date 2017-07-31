@@ -22,7 +22,7 @@ Sensor from analysis grid
 
 ghenv.Component.Name = "HoneybeePlus_Sensor from analysis grid"
 ghenv.Component.NickName = 'sensor'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_23_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_30_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -33,6 +33,9 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _analysisGrid:
+    if _analysisGrid.digitSign == 1:
+        _analysisGrid.loadValuesFromFiles()
+
     id = _index_ or 0
     sensor = _analysisGrid[id]
     pt = (sensor.location.x, sensor.location.y, sensor.location.z)
