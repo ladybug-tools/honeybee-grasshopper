@@ -17,7 +17,7 @@ Use this recipe to set up annual daylight analysis.
         _views: A list of Honeybee views.
         _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _radiancePar_: Radiance parameters for Image-based analysis. Find Radiance
+        _dmtxPar_: Radiance parameters for Image-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
         reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
             coeff matrix results from the previous study if available.
@@ -29,7 +29,7 @@ Use this recipe to set up annual daylight analysis.
 
 ghenv.Component.Name = "HoneybeePlus_DC Image-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffGBRecipe'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.02\nJUL_31_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -50,5 +50,5 @@ if _skymtx and _views:
         ' open concurrently image-based analysis only works with skyDensity of 1.')
     
     analysisRecipe = DaylightCoeffImageBased(
-        _skymtx, _views, _analysisType_, _radiancePar_,
+        _skymtx, _views, _analysisType_, _dmtxPar_,
         reuseDaylightMtx=reuseDmtx_)
