@@ -25,13 +25,13 @@ Run Radiance Analysis
     Returns:
         report: Reports, errors, warnings, etc.
         legendPar: Suggested legend parameters based on the recipe.
-        outputs: Outputs of the analysis. Outputs can be a list of images or
-            a list of analysis grids.
+        outputs: Outputs of the analysis. Outputs can be a list of image
+            collections or a list of analysis grids.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_30_2017'
+ghenv.Component.Message = 'VER 0.0.02\nAUG_02_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
