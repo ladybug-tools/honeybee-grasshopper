@@ -34,16 +34,13 @@ import shutil
 from Grasshopper.Folders import UserObjectFolders
 
 
-# TODO: Update for the new strcuture where the files from honeybee-grasshopper
-# should be copied in the same folder as honeybee
-def installButterfly(update):
+def updateHoneybee():
     
     """
-    This code will download butterfly library from github to:
-        C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\5.0\scripts\butterfly
+    This code will download honeybee and honeybee[+] library from github and
+    update the current installation.
     """
-    folders = ('ladybug', 'honeybee', 'honeybee_grasshopper')
-    repos = ('ladybug', 'honeybee', 'honeybee-grasshopper')
+    repos = ('ladybug', 'ladybug-grasshopper', 'honeybee', 'honeybee-grasshopper')
     
     targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
     try:
@@ -53,31 +50,20 @@ def installButterfly(update):
         try:
             targetDirectory = [p for p in sys.path if p.find(r'settings\lib')!= -1][0]
         except IndexError:
-            raise IOError('Failed to find a shared path in sys.path to install butterfly.\n' \
+            raise IOError('Failed to find a shared path in sys.path to install honeybee.\n' \
                           'Make sure Grasshopper is installed correctly!')
     
-    # delete folders 
-    if update:
-        for f in folders:
-            libFolder = os.path.join(targetDirectory, f)
-            if os.path.isdir(libFolder):
-                try:
-                    shutil.rmtree(libFolder)
-                except:
-                    print 'Failed to remove {}.'.format(libFolder)
-    else:
-        for c, f in enumerate(folders):
-            if not os.path.isdir(os.path.join(targetDirectory, f)):
-                break  # at least one of the folders is not installed
-            else:
-                print 'Found {}'.format(os.path.join(targetDirectory, f))
-        
-        if c == 2:
-            # all the folders are installed
-            print 'All the folders are already installed.' \
-                'Set update to True if you want them to be updated.'
-            return
+    # delete current folders 
+    for f in repos:
+        libFolder = os.path.join(targetDirectory, f)
+        if os.path.isdir(libFolder):
+            try:
+                print 'removing {}'.format(libFolder)
+                shutil.rmtree(libFolder)
+            except:
+                print 'Failed to remove {}.'.format(libFolder)
 
+    # download files
     for repo in repos:
         url = "https://github.com/ladybug-tools/%s/archive/master.zip" % repo
         # download the zip file
@@ -95,8 +81,10 @@ def installButterfly(update):
         with zipfile.ZipFile(zipFile) as zf:
             for f in zf.namelist():
                 if f.endswith('/'):
-                    try: os.makedirs(f)
-                    except: pass
+                    try:
+                        os.makedirs(f)
+                    except:
+                        pass
                 else:
                     zf.extract(f, targetDirectory)
         zf.close()
@@ -106,18 +94,27 @@ def installButterfly(update):
             pass       
     
     # copy files to folder.
-    for f, r in zip(folders, repos):
-        bfFolder = os.path.join(targetDirectory, r"{}-master".format(r), f)
-        libFolder = os.path.join(targetDirectory, f)
+    for f in repos:
+        sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
+        libFolder = os.path.join(targetDirectory, f.split('-')[0])
         print 'Copying {} source code to {}'.format(f, libFolder)
         try:
-            shutil.copytree(bfFolder, libFolder)
-        except:
-            pass
+            shutil.copytree(sourceFolder, libFolder)
+        except Exception as e:
+            if f.endswith('grasshopper'):
+                # copy [+] files over and overwrite the original files.
+                for ff in os.listdir(sourceFolder):
+                    sf = os.path.join(sourceFolder, ff)
+                    shutil.copy(sf, libFolder)
+            else:
+                raise Exception('Failed to copy:\n{}'.format(e))
     
     # copy user-objects
     uofolder = UserObjectFolders[0]
-    bfUserObjectsFolder = os.path.join(targetDirectory, r"honeybee-plus-master\plugin\grasshopper\userObjects")
+    userObjectsFolder = os.path.join(
+        targetDirectory,
+        r"honeybee-grasshopper-master\plugin\grasshopper\userObjects")
+    
     print 'Copying honeybee[+] userobjects to {}.'.format(uofolder)
     
     # remove all the HoneybeePlus userobjects
@@ -125,8 +122,8 @@ def installButterfly(update):
         if f.startswith("HoneybeePlus"):
             os.remove(os.path.join(uofolder, f))
             
-    for f in os.listdir(bfUserObjectsFolder):
-        shutil.copyfile(os.path.join(bfUserObjectsFolder, f),
+    for f in os.listdir(userObjectsFolder):
+        shutil.copyfile(os.path.join(userObjectsFolder, f),
                         os.path.join(uofolder, f))
 
     # try to clean up
@@ -136,29 +133,18 @@ def installButterfly(update):
         except:
             pass
 
-if _install:
-    installButterfly(update_)
-
-
-def importlibs():
-    import ladybug
-    import honeybee
-    print "Imported honeybee[+] from {}\nVviiiizzzz...".format(honeybee.__file__)
-
-try:
-    importlibs()
-except ImportError as e:
-    if str(e) == 'No module named ladybug':
-        installButterfly(update_)
-        try:
-            importlibs()
-        except:
-            raise Exception("Failed to import honeybee[+]:\n{}".format(e))
+if _update:
+    try:
+        updateHoneybee()
+    except ImportError as e:
+        raise Exception("Failed to update honeybee[+]:\n{}".format(e))
     else:
-        raise Exception("Failed to import honeybee[+]:\n{}".format(e))
-
-# push this component to back
-ghenv.Component.OnPingDocument().SelectAll()
-ghenv.Component.Attributes.Selected = False
-ghenv.Component.OnPingDocument().BringSelectionToTop()
-ghenv.Component.OnPingDocument().DeselectAll()
+        try:
+            import honeybee
+        except ImportError as e:
+            raise ImportError('Failed to impoer honeybee[+]:\n{}'.format(e))
+        else:
+            print "\n\nImported honeybee[+] from {}\nVviiiizzzz...".format(honeybee.__file__)
+            print "Restart Grasshopper and Rhino to load the new library."
+else:
+    print 'Set update to True to update honeybee[+]!'
