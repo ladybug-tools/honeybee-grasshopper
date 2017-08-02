@@ -33,7 +33,7 @@ group.
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Group"
 ghenv.Component.NickName = 'HBWinGroup'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_06_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

@@ -28,7 +28,7 @@ Standard Radiance CIE Sky.
 
 ghenv.Component.Name = "HoneybeePlus_CIE Standard Sky"
 ghenv.Component.NickName = 'CIESky'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_13_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

@@ -48,7 +48,7 @@ Honeybee View.
 
 ghenv.Component.Name = "HoneybeePlus_View"
 ghenv.Component.NickName = 'view'
-ghenv.Component.Message = 'VER 0.0.01\nDEC_01_2016'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

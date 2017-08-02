@@ -29,7 +29,7 @@ and radiation studies.
 
 ghenv.Component.Name = "HoneybeePlus_Cumulative Value"
 ghenv.Component.NickName = 'cumValue'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_27_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"

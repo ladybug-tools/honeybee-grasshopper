@@ -23,7 +23,7 @@ the geometries and writing the files in parametric studies.
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Scene"
 ghenv.Component.NickName = 'RadScene'
-ghenv.Component.Message = 'VER 0.0.02\nJUN_29_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

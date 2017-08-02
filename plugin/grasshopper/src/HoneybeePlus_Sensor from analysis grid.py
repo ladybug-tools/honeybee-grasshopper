@@ -22,7 +22,7 @@ Sensor from analysis grid
 
 ghenv.Component.Name = "HoneybeePlus_Sensor from analysis grid"
 ghenv.Component.NickName = 'sensor'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_30_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"

@@ -12,7 +12,7 @@ except ImportError as e:
 #  The stucture of argumnets and retuens should stay the same.
 # --------------------------------------------------------------------------------------
 # TODO(someone!): Implement triangulate
-def extractGeometryPoints(geometries, triangulate=False, meshingParameters=None):
+def extractGeometryPoints(geometries, meshingParameters=None):
     """Calculate list of points for a Grasshopper geometry.
 
     For planar surfaces the length of the list will be only 1. For non-planar
@@ -63,6 +63,7 @@ def polygon(pointList):
     return rc.Geometry.Polyline(pointList).ToNurbsCurve()
 
 
+# ------------------------- End of honeybee[+] methods -----------------------------
 # ------------------------------ Utilities -----------------------------------------
 def isPlanar(geometry, tol=1e-3):
     """Check if a surface in planar."""

@@ -23,7 +23,7 @@ Radiance Glass Material from visible transmitance for red, green and blue
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Glass Material 3"
 ghenv.Component.NickName = 'radGlassMaterial3'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_15_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

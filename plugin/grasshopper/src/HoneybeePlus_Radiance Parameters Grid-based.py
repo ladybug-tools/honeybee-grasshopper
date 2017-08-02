@@ -41,7 +41,7 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Parameters Grid-based"
 ghenv.Component.NickName = 'RADParGridBased'
-ghenv.Component.Message = 'VER 0.0.02\nJUL_26_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
