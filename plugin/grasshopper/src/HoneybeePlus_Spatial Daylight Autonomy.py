@@ -23,7 +23,7 @@ the points in the grid should fail this measure.
             to study the effect of different blind states.
         _occSchedule_: An annual occupancy schedule.
         _threshold_: Threshhold for daylight autonomy in lux (default: 300).
-        _targetArea_: Minimum target area percentage for this grid (default: 55).
+        _targetArea_: Minimum target area percentage for this grid (default: 50).
 
     Returns:
         Success: True if you meet target area based on target hours.
@@ -34,7 +34,7 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Spatial Daylight Autonomy"
 ghenv.Component.NickName = 'sDA'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_14_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

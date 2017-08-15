@@ -20,6 +20,7 @@ Annual Daylight Metrics
         _threshold_: Threshhold for daylight autonomy in lux (default: 300).
         _minmax_: A list for min, max value for useful daylight illuminance
                 (default: (100, 3000)).
+        legendPar: Suggested legend parameters for annual metrics.
 
     Returns:
         DA: Daylight autonomy. The percentage of time that each sensor
@@ -35,10 +36,19 @@ Annual Daylight Metrics
 
 ghenv.Component.Name = "HoneybeePlus_Annual Daylight Metrics"
 ghenv.Component.NickName = 'annualMetrics'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_15_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
+
+try:
+    import ladybug.legendparameters as lp
+    import ladybug.color as color
+except ImportError as e:
+    raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
+
+col = color.Colorset.Nuanced()
+legendPar = lp.LegendParameters((0, 100), colors=col)
 
 if _analysisGrid:
     states = _analysisGrid.parseBlindStates(blindStates_)

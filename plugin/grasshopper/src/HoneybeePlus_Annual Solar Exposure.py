@@ -25,6 +25,7 @@ the points in the grid should fail this measure.
         _threshold_: Threshhold for solar exposure in lux (default: 1000).
         _targetHrs_: Minimum targe hours for each point (default: 250).
         _targetArea_: Minimum target area percentage for this grid (default: 10)
+        legendPar: Suggested legend parameters for Annual Solar Exposure.
 
     Returns:
         Success: True if you meet target area based on target hours.
@@ -44,8 +45,14 @@ ghenv.Component.AdditionalHelpFromDocStrings = "3"
 try:
     import ladybug.geometry as lg
     import ladybug.output as output
+    import ladybug.legendparameters as lp
+    import ladybug.color as color
 except ImportError as e:
     raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
+
+
+col = color.Colorset.Original()
+legendPar = lp.LegendParameters((0, 250), colors=col)
 
 if _analysisGrid:
     states = _analysisGrid.parseBlindStates(blindStates_)
