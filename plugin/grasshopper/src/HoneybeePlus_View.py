@@ -48,24 +48,15 @@ Honeybee View.
 
 ghenv.Component.Name = "HoneybeePlus_View"
 ghenv.Component.NickName = 'view'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_16_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
-#import honeybee
-#reload(honeybee.radiance.view)
-
 try:
     from honeybee.radiance.view import View
 except ImportError as e:
-    msg = '\nFailed to import honeybee. Did you install honeybee on your machine?' + \
-            '\nYou can download the installer file from github: ' + \
-            'https://github.com/ladybug-analysis-tools/honeybee-plus/tree/master/plugin/grasshopper/samplefiles' + \
-            '\nOpen an issue on github if you think this is a bug:' + \
-            ' https://github.com/ladybug-analysis-tools/honeybee-plus/issues'
-        
-    raise ImportError('{}\n\t{}'.format(msg, e))
+    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
 if _vLocation and _vDirection:

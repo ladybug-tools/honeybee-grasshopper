@@ -31,14 +31,18 @@ Run Radiance Analysis
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_16_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 
-_HBObjects.Flatten()
-_HBObjects = _HBObjects.Branch(0)
+try:
+    _HBObjects.Flatten()
+    _HBObjects = _HBObjects.Branch(0)
+except AttributeError:
+    # the case for Dynamo
+    pass
 
 if _HBObjects and _analysisRecipe and _write:
     try:

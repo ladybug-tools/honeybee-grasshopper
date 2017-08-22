@@ -37,7 +37,7 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Solar Exposure"
 ghenv.Component.NickName = 'ASE'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nAUG_21_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -62,4 +62,8 @@ if _analysisGrid:
 
     prblmPts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblmPts)
     # convert list of lists to data tree
-    prblmHrs = output.listToTree(prblmHrs, ghenv.Component.RunCount - 1)
+    try:
+        prblmHrs = output.listToTree(prblmHrs, ghenv.Component.RunCount - 1)
+    except NameError:
+        # dynamo
+        pass
