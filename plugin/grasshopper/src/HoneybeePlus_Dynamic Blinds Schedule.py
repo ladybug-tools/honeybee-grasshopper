@@ -13,8 +13,7 @@ Dynamic Blinds Schedule
 
     Args:
         _sensor: A single sensor from the analsysi Grid.
-        _blindCombs_: Suggested blind state combinations of window groups for 
-            meeting the logic.
+        _blindCombs_: Suggested blind state combinations of window groups for meeting the logic.
             States can be one of the following:
             -1 = No light from window source (opaque)
             0 = Normal window state (typically transparent)
