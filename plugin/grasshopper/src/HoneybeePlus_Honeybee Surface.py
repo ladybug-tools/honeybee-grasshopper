@@ -41,7 +41,7 @@ Honeybee Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Surface"
 ghenv.Component.NickName = 'HBSurface'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -66,5 +66,5 @@ if len(_geo)!=0 and _geo[0]!=None:
     
     epProp_ = None
     
-    HBSrf = HBSurface.fromGeometry(names_, _geo, _type_, isNameSetByUser,
-                                   isTypeSetByUser, radProp_, epProp_)
+    HBSrf = HBSurface.from_geometry(names_, _geo, _type_, isNameSetByUser,
+                                    isTypeSetByUser, radProp_, epProp_)

@@ -31,7 +31,7 @@ Run Radiance Analysis
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_16_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -54,11 +54,11 @@ if _HBObjects and _analysisRecipe and _write:
     assert hasattr(_analysisRecipe, 'isAnalysisRecipe'), \
         ValueError("\n{} is not a Honeybee recipe.".format(_analysisRecipe))
     
-    legendPar = _analysisRecipe.legendParameters
+    legendPar = _analysisRecipe.legend_parameters
 
     if _write:
         # Add Honeybee objects to the recipe
-        _analysisRecipe.hbObjects = _HBObjects
+        _analysisRecipe.hb_objects = _HBObjects
         _analysisRecipe.scene = radScene_
 
         batchFile = _analysisRecipe.write(_folder_, _name_)
@@ -72,5 +72,5 @@ if _HBObjects and _analysisRecipe and _write:
                     'Length of the results is smaller than the analysis grids '
                     'point count [{}]. In case you have changed the analysis'
                     ' Grid you must re-calculate daylight/view matrix!'
-                    .format(_analysisRecipe.totalPointCount)
+                    .format(_analysisRecipe.total_point_count)
                 )

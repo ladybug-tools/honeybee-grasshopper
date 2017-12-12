@@ -24,7 +24,7 @@ Climate-based Sky.
 
 ghenv.Component.Name = "HoneybeePlus_Climatebased Sky"
 ghenv.Component.NickName = 'climatebased'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -40,4 +40,4 @@ if _wea:
     _month_ = _month_ or 6
     _day_ = _day_ or 21
     _hour_ = _hour_ or 12
-    sky = ClimateBased.fromWea(_wea, _month_, _day_, _hour_, north_)
+    sky = ClimateBased.from_wea(_wea, _month_, _day_, _hour_, north_)

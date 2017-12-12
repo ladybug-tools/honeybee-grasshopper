@@ -35,7 +35,7 @@ Dynamic Blinds Schedule
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -61,8 +61,8 @@ if _sensor:
         setattr(sensor, 'logic', sensor._logic)
 
     
-    states = sensor.parseBlindStates(_blindCombs_)
-    results = sensor.blindsState(sensor.hoys, states)
+    states = sensor.parse_blind_states(_blindCombs_)
+    results = sensor.blinds_state(sensor.hoys, states)
     if results:
         blindStates = (str(d) for d in results[0])  # tuple is not a standard GH Type
         blindStIndex = results[1]

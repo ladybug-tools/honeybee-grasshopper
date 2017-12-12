@@ -28,7 +28,7 @@ Hourly results for a sensor for several hours during the year.
 
 ghenv.Component.Name = "HoneybeePlus_Sensor Hourly Values"
 ghenv.Component.NickName = 'senHourlyValues'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -40,13 +40,13 @@ if _sensor:
 
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
 
-    states = _sensor.parseBlindStates(blindStates_)
+    states = _sensor.parse_blind_states(blindStates_)
 
     print('Loading {} values for several hours.'.format(_modes[_mode_]))
     
     if _mode_ < 2:
         values = (v[_mode_] for v in
-                  _sensor.combinedValuesById(hoys_, blindsStateIds=states))
+                  _sensor.combined_values_by_id(hoys_, blinds_state_ids=states))
     else:
-        cValues = _sensor.combinedValuesById(hoys_, blindsStateIds=states)
+        cValues = _sensor.combined_values_by_id(hoys_, blinds_state_ids=states)
         values = (v[0] - v[1] for v in cValues)

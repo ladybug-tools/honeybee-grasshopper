@@ -20,7 +20,7 @@ epw2wea
 
 ghenv.Component.Name = "HoneybeePlus_Wea"
 ghenv.Component.NickName = 'Wea'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -31,4 +31,4 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _epwFile:
-    wea = Wea.fromEpwFile(_epwFile)
+    wea = Wea.from_epw_file(_epwFile)

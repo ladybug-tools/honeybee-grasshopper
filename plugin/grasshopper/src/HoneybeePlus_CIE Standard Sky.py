@@ -28,7 +28,7 @@ Standard Radiance CIE Sky.
 
 ghenv.Component.Name = "HoneybeePlus_CIE Standard Sky"
 ghenv.Component.NickName = 'CIESky'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -41,7 +41,7 @@ except ImportError as e:
 
 if _location:
     if not hasattr(_location, 'isLocation'):
-        _location = Location.fromLocation(_location)
+        _location = Location.from_location(_location)
     # set default values if they are not set
     north_ = north_ or 0
     _type_ = _type_ or 0

@@ -32,7 +32,7 @@ Analysis Grid.
 
 ghenv.Component.Name = "HoneybeePlus_Analysis Grid"
 ghenv.Component.NickName = 'analysisGrid'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -44,5 +44,5 @@ except ImportError as e:
 
 
 if _testPoints:
-    analysisGrid = AnalysisGrid.fromPointsAndVectors(_testPoints, ptsVectors_,
+    analysisGrid = AnalysisGrid.from_points_and_vectors(_testPoints, ptsVectors_,
         _name_, wGroups_)

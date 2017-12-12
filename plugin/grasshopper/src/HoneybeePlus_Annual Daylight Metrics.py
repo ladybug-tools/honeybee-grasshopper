@@ -36,7 +36,7 @@ Annual Daylight Metrics
 
 ghenv.Component.Name = "HoneybeePlus_Annual Daylight Metrics"
 ghenv.Component.NickName = 'annualMetrics'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_15_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -47,11 +47,11 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
-col = color.Colorset.Nuanced()
+col = color.Colorset.nuanced()
 legendPar = lp.LegendParameters((0, 100), colors=col)
 
 if _analysisGrid:
-    states = _analysisGrid.parseBlindStates(blindStates_)
-    DA, CDA, UDI, UDILess, UDIMore = _analysisGrid.annualMetrics(
+    states = _analysisGrid.parse_blind_states(blindStates_)
+    DA, CDA, UDI, UDILess, UDIMore = _analysisGrid.annual_metrics(
         _threshold_, _minmax_, states, _occSchedule_
     )

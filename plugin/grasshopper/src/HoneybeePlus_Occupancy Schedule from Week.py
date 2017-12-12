@@ -27,7 +27,7 @@ Typical Occupancy Schedule based on typical week.
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule from Week"
 ghenv.Component.NickName = 'occSchduleWeek'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -37,7 +37,7 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-schedule = Schedule.fromWorkdayHours(
+schedule = Schedule.from_workday_hours(
     _occHours_, _offHours_, _weekend_, _defValue_)
 
 values = schedule.values
