@@ -29,7 +29,7 @@ Use this recipe to set up annual daylight analysis.
 
 ghenv.Component.Name = "HoneybeePlus_DC Image-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffIBRecipe'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_22_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -45,10 +45,10 @@ except ImportError as e:
 
 if _skymtx and _views:
     # check inputs
-    assert _skymtx.skyDensity < 2, ValueError(
+    assert _skymtx.sky_density < 2, ValueError(
         'Due to Windows limitations on the maximum number of files that can be\n'
         ' open concurrently image-based analysis only works with skyDensity of 1.')
     
     analysisRecipe = DaylightCoeffImageBased(
         _skymtx, _views, _analysisType_, _dmtxPar_,
-        reuseDaylightMtx=reuseDmtx_)
+        reuse_daylight_mtx=reuseDmtx_)

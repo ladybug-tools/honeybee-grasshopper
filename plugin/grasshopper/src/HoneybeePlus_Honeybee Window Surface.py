@@ -28,7 +28,7 @@ Honeybee Window Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Surface"
 ghenv.Component.NickName = 'HBWinSrf'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -52,4 +52,4 @@ if len(_geo)!=0 and _geo[0]!=None:
         radProp_ = RadianceProperties()
 
     epProp_ = None
-    HBWinSrf = HBFenSurface.fromGeometry(names_, _geo, isNameSetByUser, radProp_, epProp_)
+    HBWinSrf = HBFenSurface.from_geometry(names_, _geo, isNameSetByUser, radProp_, epProp_)

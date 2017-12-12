@@ -25,7 +25,7 @@ Hourly results for an analysis grid for a single hour of the year.
 
 ghenv.Component.Name = "HoneybeePlus_Hourly Values"
 ghenv.Component.NickName = 'hourlyValues'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -50,10 +50,17 @@ if _analysisGrid:
             raise TypeError('Failed to read blindState_:\n{}'.format(e))
         states = None
     
-    print('Loading {} values for {}.'.format(_modes[_mode_], DateTime.fromHoy(hoy_)))
     
     if _mode_ < 2:
-        values = (v[_mode_] for v in _analysisGrid.combinedValueById(hoy_, states))
+        values = (v[_mode_] for v in _analysisGrid.combined_value_by_id(hoy_, states))
+        if _mode_ != 0 and not _analysisGrid.has_direct_values:
+                print('Direct values are not available. Results will be 0.')
     else:
-        cValues = _analysisGrid.combinedValueById(hoy_, states)
-        values = (v[0] - v[1] for v in cValues)
+        cValues = tuple(_analysisGrid.combined_value_by_id(hoy_, states))
+        if _analysisGrid.has_direct_values:
+            print('Loading {} values for {}.'.format(_modes[_mode_],
+                                                     DateTime.from_hoy(hoy_)))
+            values = (v[0] - v[1] for v in cValues)
+        else:
+            print('Loading total values for {}.'.format(DateTime.from_hoy(hoy_)))
+            values = (v[0] for v in cValues)

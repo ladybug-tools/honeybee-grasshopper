@@ -29,7 +29,7 @@ and radiation studies.
 
 ghenv.Component.Name = "HoneybeePlus_Cumulative Value"
 ghenv.Component.NickName = 'cumValue'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -41,13 +41,13 @@ if _analysisGrid:
 
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
 
-    states = _analysisGrid.parseBlindStates(blindStates_)
+    states = _analysisGrid.parse_blind_states(blindStates_)
 
     print('Loading sum of {} values.'.format(_modes[_mode_]))
     
     if _mode_ < 2:
         values = (v[_mode_] for v in
-                  _analysisGrid.sumValuesById(hoys_, blindsStateIds=states))
+                  _analysisGrid.sum_values_by_id(hoys_, blinds_state_ids=states))
     else:
-        cValues = _analysisGrid.sumValuesById(hoys_, blindsStateIds=states)
+        cValues = _analysisGrid.sum_values_by_id(hoys_, blinds_state_ids=states)
         values = (v[0] - v[1] for v in cValues)

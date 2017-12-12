@@ -21,7 +21,7 @@ Radiance Glass Material from Visible Transmitance
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Glass Material"
 ghenv.Component.NickName = 'radGlassMaterial'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -33,4 +33,4 @@ except ImportError as e:
 
 if _name:
     _tVis_ = _tVis_ or 0.6
-    material = GlassMaterial.bySingleTransValue(_name, _tVis_)
+    material = GlassMaterial.by_single_trans_value(_name, _tVis_)
