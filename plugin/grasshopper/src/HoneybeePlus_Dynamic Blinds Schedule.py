@@ -27,8 +27,10 @@ Dynamic Blinds Schedule
             If you plug in a list of tuples, honeybee will try to meet the logic 
             by first using the first tuple in the list.  If that doesn't work, the second 
             tuple will be used, etc.
-            The default is to keep all groups at 0 unless the logic is not met,
-            in which case the highest shade state of all window groups will be used.
+            Note that, if you want the states to start with all clear windows,
+            you should plug in (0, 0, 0) as the first _blindComb_.
+            If nothing is connected here, the default is to use the highest 
+            shade state of all window groups.
         _logic_: Blinds logic. You can use ill, ill_dir and h(our) as input
             values. Default is ill > 3000. You can also overwrite the logic
             by opening the components and edit 'checkLogic' function.
@@ -46,7 +48,7 @@ Dynamic Blinds Schedule
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
+ghenv.Component.Message = 'VER 0.0.03\nDEC_17_2017'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
