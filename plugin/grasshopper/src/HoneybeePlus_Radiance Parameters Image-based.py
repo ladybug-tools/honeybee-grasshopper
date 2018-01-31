@@ -44,7 +44,7 @@ ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
 
 try:
-    import honeybee.radiance.recipe.parameters as param
+    from honeybee.radiance.recipe import parameters as param
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
     
