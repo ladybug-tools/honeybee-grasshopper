@@ -11,7 +11,6 @@
 Radiance parameters library for analysis recipes.
 
 Check here for more details: http://radsite.lbl.gov/radiance/refer/Notes/rpict_options.html
-Read more about the parameters at: http://daysim.ning.com/
 Here is my favorite presentation by John Mardaljevic: http://radiance-online.org/community/workshops/2011-berkeley-ca/presentations/day1/JM_AmbientCalculation.pdf
 
 -
@@ -39,7 +38,7 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Parameters Image-based"
 ghenv.Component.NickName = 'RADParImageBased'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.03\nJAN_31_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
@@ -54,16 +53,16 @@ _complexity_ = _complexity_ or 0
 _recipeType_ = _recipeType_ or 0
 
 radPar, vmtxPar, dmtxPar, smtxPar = \
-    param.getRadianceParametersImageBased(_complexity_, _recipeType_)
+    param.get_radiance_parameters_image_based(_complexity_, _recipeType_)
     
 if radOptPar_ and radPar:
-    radPar.importParameterValuesFromString(radOptPar_)
+    radPar.import_parameter_values_from_string(radOptPar_)
 
 if vmtxOptPar_ and vmtxPar:
-    vmtxPar.importParameterValuesFromString(vmtxOptPar_)
+    vmtxPar.import_parameter_values_from_string(vmtxOptPar_)
 
 if dmtxOptPar_ and dmtxPar:
-    dmtxPar.importParameterValuesFromString(dmtxOptPar_)
+    dmtxPar.import_parameter_values_from_string(dmtxOptPar_)
 
 if smtxOptPar_ and smtxPar:
-    smtxPar.importParameterValuesFromString(smtxOptPar_)    
+    smtxPar.import_parameter_values_from_string(smtxOptPar_)    
