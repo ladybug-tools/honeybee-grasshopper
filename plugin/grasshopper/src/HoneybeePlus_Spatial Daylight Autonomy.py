@@ -7,41 +7,49 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Calculate annual solar exposure (ASE).
+Calculate spacial daylight autonomy (sDA).
 
-As per IES-LM-83-12 ASE is the percent of sensors that are
-found to be exposed to more than 1000lux of direct sunlight for
-more than 250hrs per year. For LEED credits no more than 10% of
-the points in the grid should fail this measure.
--
+As per IES-LM-83-12 Spatial Daylight Autonomy (sDA) is a metric describing
+annual sufficiency of ambient daylight levels in interior environments.
+It is defined as the percent of an analysis area (the area where calcuations
+are performed -typically across an entire space) that meets a minimum
+daylight illuminance level for a specified fraction of the operating hours
+per year. The sDA value is expressed as a percentage of area.
 
     Args:
         _analysisGrid: An analysis grid output from run Radiance analysis.
         blindStates_: List of state ids for all the sources for input hoys.
-            If you want a source to be removed set the state to -1. ASE must
-            be calculated without dynamic blinds but you can use this option
-            to study the effect of different blind states.
-        _occSchedule_: An annual occupancy schedule.
+            If you want a source to be removed set the state to -1. As per
+            IES-LM-83-12 the blinds must be closed at any point of time that
+            more than 2% of analysis points recieve direct sunlight.
+        _occSchedule_: An annual occupancy schedule. As per IES-LM-83 the
+            schedule should be 8am to 6pm (10 hours during the day).
         _threshold_: Threshhold for daylight autonomy in lux (default: 300).
-        _targetArea_: Minimum target area percentage for this grid (default: 50).
+        _targetDA_: Minimum target percentage for daylight autonomy (default: 50).
 
     Returns:
-        Success: True if you meet target area based on target hours.
-        perArea: Percentage area that doesn't meet the target.
-        prblmPts: A list of problematic test points.
-        prblmHrs: Problematic hours for each point.
+        sDA: Spatial daylight autonomy as percentage of area for each analysis
+            grid.
+        DA: Daylight autonomy for each point in each analysis grid.
+        prblmPts: A list of problematic test points with spatial daylight autonomy
+            less then targetDA.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Spatial Daylight Autonomy"
 ghenv.Component.NickName = 'sDA'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
+ghenv.Component.Message = 'VER 0.0.03\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
+try:
+    import ladybug.geometry as lg
+except ImportError as e:
+    raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
 if _analysisGrid:
     states = _analysisGrid.parse_blind_states(blindStates_)
-    sDA, prblmHrs = _analysisGrid.spatial_daylight_autonomy(
-         _threshold_, states, _occSchedule_, _targetArea_
+    sDA, DA, prblmPts = _analysisGrid.spatial_daylight_autonomy(
+         _threshold_, _targetDA_, states, _occSchedule_
     )
+    prblmPts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblmPts)
