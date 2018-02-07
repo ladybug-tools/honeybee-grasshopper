@@ -20,7 +20,7 @@ epw2wea
 
 ghenv.Component.Name = "HoneybeePlus_Wea"
 ghenv.Component.NickName = 'Wea'
-ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

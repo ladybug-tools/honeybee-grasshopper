@@ -27,7 +27,7 @@ Typical Occupancy Schedule based on typical week.
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule from Week"
 ghenv.Component.NickName = 'occSchduleWeek'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

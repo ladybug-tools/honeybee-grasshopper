@@ -13,24 +13,11 @@ Dynamic Blinds Schedule
 
     Args:
         _sensor: A single sensor from the analsysi Grid.
-        _blindCombs_: Suggested blind state combinations of window groups for meeting the logic.
-            States can be one of the following:
-            -1 = No light from window source (opaque)
-            0 = Normal window state (typically transparent)
-            1 = The first shade state (assuming one has been assigned)
-            2 = the second shade state (assuming one has been assigned)
-            ... etc.
-            Put each state as a tuple that has a length equal to the number of
-            window groups in the model (check the report output of this component to see
-            the order of the window groups). For instance (0, 0, 1) indicates that the 
-            first and second window groups are at state 0 and the third window group is at state 1.
-            If you plug in a list of tuples, honeybee will try to meet the logic 
-            by first using the first tuple in the list.  If that doesn't work, the second 
-            tuple will be used, etc.
-            Note that, if you want the states to start with all clear windows,
-            you should plug in (0, 0, 0) as the first _blindComb_.
-            If nothing is connected here, the default is to use the highest 
-            shade state of all window groups.
+        _blindCombs_: Suggested states combinations for sources. Default is
+            the longest combination between all the window groups. Put each
+            state as a tuple. Check the sensor output for sources and possible
+            states. For instance (0, 0, 1) indicates the first and second window
+            groups are at state 0 and the third window group is at state 1.
         _logic_: Blinds logic. You can use ill, ill_dir and h(our) as input
             values. Default is ill > 3000. You can also overwrite the logic
             by opening the components and edit 'checkLogic' function.
@@ -48,7 +35,7 @@ Dynamic Blinds Schedule
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_17_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"

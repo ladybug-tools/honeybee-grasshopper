@@ -25,7 +25,7 @@ Hourly results for an analysis grid for a single hour of the year.
 
 ghenv.Component.Name = "HoneybeePlus_Hourly Values"
 ghenv.Component.NickName = 'hourlyValues'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_11_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"

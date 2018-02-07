@@ -28,7 +28,7 @@ Sky Matrix.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Matrix"
 ghenv.Component.NickName = 'skyMatrix'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"

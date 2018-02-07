@@ -21,7 +21,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\5.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

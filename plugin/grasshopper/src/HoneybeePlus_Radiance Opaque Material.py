@@ -23,7 +23,7 @@ Radiance Opaque Material from Single Reflectance Value
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Opaque Material"
 ghenv.Component.NickName = 'radOpaqueMaterial'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_11_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

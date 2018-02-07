@@ -37,7 +37,7 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Solar Exposure"
 ghenv.Component.NickName = 'ASE'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

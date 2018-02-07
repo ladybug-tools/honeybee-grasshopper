@@ -29,7 +29,7 @@ Use this recipe to set up annual daylight analysis.
 
 ghenv.Component.Name = "HoneybeePlus_DC Image-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffIBRecipe'
-ghenv.Component.Message = 'VER 0.0.03\nDEC_12_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

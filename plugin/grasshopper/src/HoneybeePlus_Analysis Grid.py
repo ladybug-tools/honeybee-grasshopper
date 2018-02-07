@@ -32,7 +32,7 @@ Analysis Grid.
 
 ghenv.Component.Name = "HoneybeePlus_Analysis Grid"
 ghenv.Component.NickName = 'analysisGrid'
-ghenv.Component.Message = 'VER 0.0.04\nDEC_11_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"

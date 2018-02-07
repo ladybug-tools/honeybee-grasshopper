@@ -30,7 +30,7 @@ Solar Access Recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Solar Access Recipe"
 ghenv.Component.NickName = 'solarAccessRecipe'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_04_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"

@@ -20,7 +20,7 @@ Convert hdr files to tiff files.
 
 ghenv.Component.Name = "HoneybeePlus_HDR to Tiff"
 ghenv.Component.NickName = 'hdr2tiff'
-ghenv.Component.Message = 'VER 0.0.03\nAUG_22_2017'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
