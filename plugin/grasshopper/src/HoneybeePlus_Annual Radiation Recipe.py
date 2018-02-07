@@ -17,7 +17,7 @@ Annual radiation analysis
         _dmtxPar_: Radiance parameters for Daylight matrix calculation. Find
             Radiance parameters node under 03::Daylight::Recipe.
         reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
-            coeff matrix results from the previous study if available.
+            coeff matrix results from the previous study if available (default: False).
     Returns:
         readMe!: Reports, errors, warnings, etc.
         analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance

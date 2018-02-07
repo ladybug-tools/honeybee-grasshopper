@@ -21,7 +21,7 @@ Three-pahse daylight Recipe.
         reuseVmtx_: A boolean to indicate if you want the analysis to use the view
             coeff matrix results from the previous study if available.
         reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
-            coeff matrix results from the previous study if available.
+            coeff matrix results from the previous study if available (default: False).
     Returns:
         readMe!: Reports, errors, warnings, etc.
         analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance

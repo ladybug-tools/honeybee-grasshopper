@@ -16,8 +16,12 @@ Five-pahse daylight Recipe.
         _analysisGrids: A list of Honeybee analysis grids.
         _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
-            parameters node under 03::Daylight::Recipes.
+        _vmtxPar_: RfluxMtx parameters for view coefficient calculation.
+        _dmtxPar_: RfluxMtx parameters for daylight coefficient calculation.
+        reuseVmtx_: A boolean to indicate if you want the analysis to use the view
+            coeff matrix results from the previous study if available.
+        reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
+            coeff matrix results from the previous study if available (default: False).
     Returns:
         readMe!: Reports, errors, warnings, etc.
         analysisRecipe: Five-pahse analysis recipe. Connect this recipe to Run
