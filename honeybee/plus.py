@@ -66,7 +66,7 @@ def polygon(point_list):
 # ------------------------------ Utilities -----------------------------------------
 def is_planar(geometry, tol=1e-3):
     """Check if a surface in planar."""
-    return geometry.Faces[0].is_planar(tol)
+    return geometry.Faces[0].IsPlanar(tol)
 
 
 def extract_brep_points(brep, meshing_parameters=None, tol=1e-3):
@@ -74,7 +74,7 @@ def extract_brep_points(brep, meshing_parameters=None, tol=1e-3):
     meshing_parameters = meshing_parameters or rc.Geometry.MeshingParameters.Coarse
     for fid in xrange(brep.Faces.Count):
         geometry = brep.Faces[fid].DuplicateFace(False)
-        if not brep.Faces[fid].is_planar(tol):
+        if not brep.Faces[fid].IsPlanar(tol):
             meshes = rc.Geometry.Mesh.CreateFromBrep(geometry, meshing_parameters)
             yield next(extract_mesh_points(meshes))
         else:
@@ -149,7 +149,7 @@ def get_surface_center_pt_and_normal(geometry):
         Returns a tuple as (center_pt, normal_vector)
     """
     brep_face = geometry.Faces[0]
-    if brep_face.is_planar and brep_face.IsSurface:
+    if brep_face.IsPlanar and brep_face.IsSurface:
         u_domain = brep_face.Domain(0)
         v_domain = brep_face.Domain(1)
         center_u = (u_domain.Min + u_domain.Max) / 2
