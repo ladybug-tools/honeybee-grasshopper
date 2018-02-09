@@ -21,7 +21,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\5.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_09_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -111,20 +111,39 @@ def updateHoneybee():
     
     # copy user-objects
     uofolder = UserObjectFolders[0]
-    userObjectsFolder = os.path.join(
-        targetDirectory,
-        r"honeybee-grasshopper-master\plugin\grasshopper\userObjects")
+
+    for pl in ('ladybug', 'honeybee'):
+        userObjectsFolder = os.path.join(
+            targetDirectory,
+            r"{}-grasshopper-master\plugin\grasshopper\userObjects".format(pl))
     
-    print 'Copying honeybee[+] userobjects to {}.'.format(uofolder)
+        plus_uofolder = os.path.join(uofolder, '{}Plus'.format(pl.capitalize()))
+        if not os.path.isdir(plus_uofolder):
+            os.mkdir(plus_uofolder)
     
-    # remove all the HoneybeePlus userobjects
-    for f in os.listdir(uofolder):
-        if f.startswith("HoneybeePlus"):
-            os.remove(os.path.join(uofolder, f))
-            
-    for f in os.listdir(userObjectsFolder):
-        shutil.copyfile(os.path.join(userObjectsFolder, f),
-                        os.path.join(uofolder, f))
+        print 'Removing {}[+] userobjects.'.format(pl, uofolder)
+    
+        # remove older userobjects
+        for f in os.listdir(uofolder):
+            if os.path.isdir(os.path.join(uofolder, f)):
+                continue
+            if f.startswith('{}Plus'.format(pl.capitalize())):
+                try:
+                    os.remove(os.path.join(uofolder, f))
+                except:
+                    print('Failed to remove {}'.format(os.path.join(uofolder, f)))
+        for f in os.listdir(plus_uofolder):
+            if f.startswith('{}Plus'.format(pl.capitalize())):
+                try:
+                    os.remove(os.path.join(plus_uofolder, f))
+                except:
+                    print('Failed to remove {}'.format(os.path.join(plus_uofolder, f)))
+                    
+        print 'Copying {}[+] userobjects to {}.'.format(pl, uofolder)
+    
+        for f in os.listdir(userObjectsFolder):
+            shutil.copyfile(os.path.join(userObjectsFolder, f),
+                            os.path.join(plus_uofolder, f))
 
     # try to clean up
     for r in repos:
@@ -142,9 +161,9 @@ if _update:
         try:
             import honeybee
         except ImportError as e:
-            raise ImportError('Failed to impoer honeybee[+]:\n{}'.format(e))
+            raise ImportError('Failed to import honeybee[+]:\n{}'.format(e))
         else:
             print "\n\nImported honeybee[+] from {}\nVviiiizzzz...".format(honeybee.__file__)
             print "Restart Grasshopper and Rhino to load the new library."
 else:
-    print 'Set update to True to update honeybee[+]!'
+    print 'Set update to True to update ladybug[+] and honeybee[+]!'
