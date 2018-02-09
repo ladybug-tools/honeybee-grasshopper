@@ -27,7 +27,7 @@ Maximum values for a grid.
 
 ghenv.Component.Name = "HoneybeePlus_Maximum Value"
 ghenv.Component.NickName = 'maxValue'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.04\nFEB_08_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -36,10 +36,10 @@ if _analysisGrid:
     _modes = ('total', 'direct', 'diffuse')
     _mode_ = _mode_ or 0
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
-    states = _analysisGrid.parseBlindStates(blindStates_)
+    states = _analysisGrid.parse_blind_states(blindStates_)
     print('Calculating max values from {} values.'.format(_modes[_mode_]))
     if _mode_ < 2:
-        values = (v[_mode_] for v in _analysisGrid.maxValuesById(blindsStateIds=states))
+        values = (v[_mode_] for v in _analysisGrid.max_values_by_id(blinds_state_ids=states))
     else:
-        cValues = _analysisGrid.maxValuesById(blindsStateIds=states)
+        cValues = _analysisGrid.max_values_by_id(blinds_state_ids=states)
         values = (v[0] - v[1] for v in cValues)
