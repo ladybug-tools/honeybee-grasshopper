@@ -71,7 +71,7 @@ def is_planar(geometry, tol=1e-3):
 
 def extract_brep_points(brep, meshing_parameters=None, tol=1e-3):
     """Extract points from Brep."""
-    meshing_parameters = meshing_parameters or rc.Geometry.meshing_parameters.Coarse
+    meshing_parameters = meshing_parameters or rc.Geometry.MeshingParameters.Coarse
     for fid in xrange(brep.Faces.Count):
         geometry = brep.Faces[fid].DuplicateFace(False)
         if not brep.Faces[fid].is_planar(tol):
