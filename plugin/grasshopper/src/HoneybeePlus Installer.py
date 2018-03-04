@@ -21,7 +21,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\5.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.04\nFEB_09_2018'
+ghenv.Component.Message = 'VER 0.0.04\nMAR_03_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -32,7 +32,7 @@ import sys
 import zipfile
 import shutil
 from Grasshopper.Folders import UserObjectFolders
-
+System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
 
 def updateHoneybee():
     
