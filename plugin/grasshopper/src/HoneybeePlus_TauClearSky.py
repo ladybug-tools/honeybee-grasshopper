@@ -7,12 +7,14 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Convert a stat file into a WEA file with an ASHRAE Clear Sky.
+Convert a stat file into a WEA object with an ASHRAE Revised Clear Sky.
 
 -
 
     Args:
-        _statFile = Fullpath to stat file (typically next to the epw file).
+        _statFile = Full path to stat file (typically next to the epw file).
+        timestep_: An integer representing the timestep with which to make the 
+            WEA object.  Default is set to 1 for 1 step per hour of the year.
     Returns:
         readMe!: Reports, errors, warnings, etc.
         wea: A wea object from stat file. This wea object represents an ASHRAE Revised 
@@ -34,4 +36,6 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _statFile:
-    wea = Wea.from_stat_file(_statFile)
+    if timestep_ == None:
+        timestep_ = 1
+    wea = Wea.from_stat_file(_statFile, timestep_)
