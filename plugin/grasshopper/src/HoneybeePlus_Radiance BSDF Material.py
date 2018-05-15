@@ -30,15 +30,16 @@ Radiance BSDF Material
 
 ghenv.Component.Name = "HoneybeePlus_Radiance BSDF Material"
 ghenv.Component.NickName = 'BSDFMaterial'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.radiance.material.bsdf import BSDFMaterial
+    from honeybee.radiance.material.bsdf import BSDF
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _xmlfile:
-    material = BSDFMaterial(_xmlfile, _upVector_, thickness_)
+    name = None  # will be generated from xml file name
+    material = BSDF(_xmlfile, name, _upVector_, thickness_)

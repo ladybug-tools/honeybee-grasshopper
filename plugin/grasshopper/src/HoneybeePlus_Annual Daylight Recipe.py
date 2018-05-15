@@ -31,13 +31,10 @@ window groups.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Daylight Recipe"
 ghenv.Component.NickName = 'annualDLRecipe'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
-
-#import honeybee
-#reload(honeybee.radiance.recipe.annual.gridbased)
 
 try:
     from honeybee.radiance.recipe.annual.gridbased import GridBased

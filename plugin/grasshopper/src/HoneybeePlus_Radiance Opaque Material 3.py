@@ -25,13 +25,13 @@ Radiance Opaque Material from Single Reflectance Value
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Opaque Material 3"
 ghenv.Component.NickName = 'radOpaqueMaterial3'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.radiance.material.plastic import PlasticMaterial
+    from honeybee.radiance.material.plastic import Plastic
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
@@ -39,4 +39,4 @@ if _name:
     _rRef_ = _rRef_ or 0.35
     _gRef_ = _gRef_ or 0.35
     _bRef_ = _bRef_ or 0.35
-    material = PlasticMaterial(_name, _rRef_, _gRef_, _bRef_, _spec_, _rough_)
+    material = Plastic(_name, _rRef_, _gRef_, _bRef_, _spec_, _rough_)

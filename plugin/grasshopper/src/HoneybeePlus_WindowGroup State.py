@@ -28,7 +28,7 @@ Window Group State
 
 ghenv.Component.Name = "HoneybeePlus_WindowGroup State"
 ghenv.Component.NickName = 'HBWinGroupState'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -42,8 +42,9 @@ except ImportError as e:
 
 if _name and (radMat_ or HBSrfs_):
     if radMat_:
-        radPar = RadianceProperties(radMat_, True)
+        radPar = RadianceProperties(radMat_)
     else:
         radPar = RadianceProperties()
 
-    state = SurfaceState(_name, SurfaceProperties(Window, radPar), HBSrfs_) 
+    state = SurfaceState(_name, SurfaceProperties(Window, radPar), HBSrfs_)
+    

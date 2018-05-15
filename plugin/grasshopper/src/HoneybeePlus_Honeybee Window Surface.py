@@ -28,7 +28,7 @@ Honeybee Window Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Surface"
 ghenv.Component.NickName = 'HBWinSrf'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -45,9 +45,9 @@ if len(_geo)!=0 and _geo[0]!=None:
         isNameSetByUser = True
 
     if radMat_:
-        assert radMat_.isGlassMaterial, \
+        assert not radMat_.is_opaque, \
             TypeError('Radiance material must be a Window material not {}.'.format(type(m)))
-        radProp_ = RadianceProperties(radMat_, True)
+        radProp_ = RadianceProperties(radMat_)
     else:
         radProp_ = RadianceProperties()
 

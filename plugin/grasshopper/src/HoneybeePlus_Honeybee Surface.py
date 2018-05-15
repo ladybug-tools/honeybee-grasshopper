@@ -41,7 +41,7 @@ Honeybee Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Surface"
 ghenv.Component.NickName = 'HBSurface'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -62,7 +62,7 @@ if len(_geo)!=0 and _geo[0]!=None:
     if not _type_:
         isTypeSetByUser = False
     
-    radProp_ = RadianceProperties(radMat_, True) if radMat_ else RadianceProperties()
+    radProp_ = RadianceProperties(radMat_) if radMat_ else RadianceProperties()
     
     epProp_ = None
     
