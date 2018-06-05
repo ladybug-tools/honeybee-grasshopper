@@ -32,7 +32,7 @@ Convert a stat file into a WEA object with an original ASHRAE Clear Sky.
 
 ghenv.Component.Name = "HoneybeePlus_ClearSky"
 ghenv.Component.NickName = 'ClearSky'
-ghenv.Component.Message = 'VER 0.0.04\nMAY_14_2018'
+ghenv.Component.Message = 'VER 0.0.04\nJUN_05_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
@@ -47,4 +47,4 @@ if _location:
         timestep_ = 1
     if clearness_ == None:
         clearness_ = 1
-    wea = Wea.ashrae_clear_sky(_location, clearness_, timestep_)
+    wea = Wea.from_ashrae_clear_sky(_location, clearness_, timestep_)

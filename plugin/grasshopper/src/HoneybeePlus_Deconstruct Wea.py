@@ -23,16 +23,14 @@ at each timestep of the file.
 
 ghenv.Component.Name = "HoneybeePlus_Deconstruct Wea"
 ghenv.Component.NickName = 'DecnstrWea'
-ghenv.Component.Message = 'VER 0.0.04\nJUN_04_2018'
+ghenv.Component.Message = 'VER 0.0.04\nJUN_05_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
 
 if _wea is not None and hasattr(_wea, 'isWea'):
-    try:
-        dir = [x.value for x in _wea.direct_normal_radiation]
-        diff = [x.value for x in _wea.diffuse_horizontal_radiation]
-    except:
-        dir = _wea.direct_normal_radiation
-        diff = _wea.diffuse_horizontal_radiation
-    glob = _wea.get_global_horizontal_radiation()
+    globH = _wea.get_global_horizontal_radiation()
+    
+    dir = [float(x) for x in _wea.direct_normal_radiation]
+    diff = [float(x) for x in _wea.diffuse_horizontal_radiation]
+    glob = [float(x) for x in globH]

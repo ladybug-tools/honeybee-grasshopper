@@ -49,12 +49,13 @@ for obstructions that block the sun.
 
 ghenv.Component.Name = "HoneybeePlus_Solar On Surface"
 ghenv.Component.NickName = 'SolarOnSrf'
-ghenv.Component.Message = 'VER 0.0.04\nJUN_04_2018'
+ghenv.Component.Message = 'VER 0.0.04\nJUN_05_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
 
 if _wea is not None and hasattr(_wea, 'isWea'):
+    # set defaults
     if _sAlt_ is None:
         _sAlt_ = 90
     if _sAz_ is None:
@@ -63,5 +64,14 @@ if _wea is not None and hasattr(_wea, 'isWea'):
         _gRef_ = 0.2
     if isoT_ is None:
         isoT_ = True
-    srfTotal, srfDir, srfDiff, srfRef = _wea.get_radiation_values_on_surface(_sAlt_, _sAz_, _gRef_, isoT_)
+    
+    # compute solar on surface
+    srfTotal, srfDir, srfDiff, srfRef = \
+        _wea.get_radiation_values_on_surface(_sAlt_, _sAz_, _gRef_, isoT_)
+    
+    # convert to float values
+    srfTotal = [float(x) for x in srfTotal]
+    srfDir = [float(x) for x in srfDir]
+    srfDiff = [float(x) for x in srfDiff]
+    srfRef = [float(x) for x in srfRef]
 
