@@ -13,6 +13,8 @@ epw2wea
 
     Args:
         _epwFile = Fullpath to epw weather file.
+        timestep_: An integer representing the timestep with which to make the 
+            WEA object.  Default is set to 1 for 1 step per hour of the year.
     Returns:
         readMe!: Reports, errors, warnings, etc.
         wea: A wea object from epw file.
@@ -20,7 +22,7 @@ epw2wea
 
 ghenv.Component.Name = "HoneybeePlus_Wea"
 ghenv.Component.NickName = 'Wea'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.04\nJUL_10_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -31,4 +33,6 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _epwFile:
-    wea = Wea.from_epw_file(_epwFile)
+    if timestep_ == None:
+        timestep_ = 1
+    wea = Wea.from_epw_file(_epwFile, timestep_)
