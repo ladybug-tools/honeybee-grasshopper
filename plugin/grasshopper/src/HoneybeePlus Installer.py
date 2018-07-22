@@ -9,19 +9,20 @@
 """
 This component downloads honeybee libraries from github to:
 C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\5.0\scripts
+OR
+C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 -
 
     Args:
-        _install!: Set to True to install honeybee[+] (and ladybug) on your machine.
-        update_: Optional boolean to update honeybee even if you have it already installed.
+        _update!: Set to True to install honeybee[+] (and ladybug) on your machine.
     Returns:
         Vviiiiiiiiiizzz!: !!!
 """
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.04\nMAR_03_2018'
+ghenv.Component.Message = 'VER 0.0.04\nJUL_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -31,6 +32,8 @@ import System
 import sys
 import zipfile
 import shutil
+import distutils
+from distutils import dir_util
 from Grasshopper.Folders import UserObjectFolders
 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
 
@@ -59,7 +62,7 @@ def updateHoneybee():
         if os.path.isdir(libFolder):
             try:
                 print 'removing {}'.format(libFolder)
-                shutil.rmtree(libFolder)
+                dir_util.remove_tree(libFolder)
             except:
                 print 'Failed to remove {}.'.format(libFolder)
 
@@ -91,23 +94,14 @@ def updateHoneybee():
         try:
             os.remove(zipFile)
         except:
-            pass       
+            print 'Failed to remove downloaded zip file.'
     
     # copy files to folder.
     for f in repos:
         sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
         libFolder = os.path.join(targetDirectory, f.split('-')[0])
         print 'Copying {} source code to {}'.format(f, libFolder)
-        try:
-            shutil.copytree(sourceFolder, libFolder)
-        except Exception as e:
-            if f.endswith('grasshopper'):
-                # copy [+] files over and overwrite the original files.
-                for ff in os.listdir(sourceFolder):
-                    sf = os.path.join(sourceFolder, ff)
-                    shutil.copy(sf, libFolder)
-            else:
-                raise Exception('Failed to copy:\n{}'.format(e))
+        dir_util.copy_tree(sourceFolder, libFolder)
     
     # copy user-objects
     uofolder = UserObjectFolders[0]
@@ -150,7 +144,7 @@ def updateHoneybee():
         try:
             shutil.rmtree(os.path.join(targetDirectory, '{}-master'.format(r)))
         except:
-            pass
+            print 'Failed to delete donloaded libraries.'
 
 if _update:
     try:
