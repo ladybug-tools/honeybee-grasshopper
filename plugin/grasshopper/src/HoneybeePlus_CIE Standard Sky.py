@@ -28,7 +28,7 @@ Standard Radiance CIE Sky.
 
 ghenv.Component.Name = "HoneybeePlus_CIE Standard Sky"
 ghenv.Component.NickName = 'CIESky'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.04\nSEP_10_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -48,4 +48,4 @@ if _location:
     _month_ = _month_ or 6
     _day_ = _day_ or 21
     _hour_ = _hour_ or 12
-    sky = CIE(_location, _month_, _day_, _hour_, _type_, north_)
+    sky = CIE(_location, _month_, _day_, _hour_, north_, _type_)
