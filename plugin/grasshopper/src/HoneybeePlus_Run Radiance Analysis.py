@@ -12,10 +12,10 @@ Run Radiance Analysis
 -
 
     Args:
-        _analysisRecipe: Radiance analysis recipe. You can find the recipes under
+        _analysis_recipe: Radiance analysis recipe. You can find the recipes under
             tab 03 | Daylight | Recipe.
-        _HBObjects: A flatten list of Honeybee surfaces and zones.
-        radScene_: A honeybee radiance scene that will be considered as the context
+        _HB_objects: A flatten list of Honeybee surfaces and zones.
+        rad_scene_: A honeybee radiance scene that will be considered as the context
             for honeybee objects. Use Radiance Scene component to create a radScene.
         _folder_: An optional folder to save the files for this analysis.
         _name_: An optional name for this analysis.
@@ -24,53 +24,53 @@ Run Radiance Analysis
             _write is also set to True.
     Returns:
         report: Reports, errors, warnings, etc.
-        legendPar: Suggested legend parameters based on the recipe.
+        legend_par: Suggested legend parameters based on the recipe.
         outputs: Outputs of the analysis. Outputs can be a list of image
             collections or a list of analysis grids.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 
 try:
-    _HBObjects.Flatten()
-    _HBObjects = _HBObjects.Branch(0)
+    _HB_objects.Flatten()
+    _HB_objects = _HB_objects.Branch(0)
 except AttributeError:
     # the case for Dynamo
     pass
 
-if _HBObjects and _analysisRecipe and _write:
+if _HB_objects and [0] is not None and _analysis_recipe and _write:
     try:
-        for obj in _HBObjects:
+        for obj in _HB_objects:
             assert hasattr(obj, 'isHBObject')
     except AssertionError:
         raise ValueError("\n{} is not a valid Honeybee object.".format(obj))
    
-    assert hasattr(_analysisRecipe, 'isAnalysisRecipe'), \
-        ValueError("\n{} is not a Honeybee recipe.".format(_analysisRecipe))
+    assert hasattr(_analysis_recipe, 'isAnalysisRecipe'), \
+        ValueError("\n{} is not a Honeybee recipe.".format(_analysis_recipe))
     
-    legendPar = _analysisRecipe.legend_parameters
+    legend_par = _analysis_recipe.legend_parameters
 
-    if _write:
+    if _write == True:
         # Add Honeybee objects to the recipe
-        _analysisRecipe.hb_objects = _HBObjects
-        _analysisRecipe.scene = radScene_
+        _analysis_recipe.hb_objects = _HB_objects
+        _analysis_recipe.scene = rad_scene_
 
-        batchFile = _analysisRecipe.write(_folder_, _name_)
+        batchFile = _analysis_recipe.write(_folder_, _name_)
 
-    if _write and run_:
-        if _analysisRecipe.run(batchFile, False):
+    if _write == True and run_ == True:
+        if _analysis_recipe.run(batchFile, False):
             try:
-                outputs = _analysisRecipe.results()
+                outputs = _analysis_recipe.results()
             except StopIteration:
                 raise ValueError(
                     'Length of the results is smaller than the analysis grids '
                     'point count [{}]. In case you have changed the analysis'
                     ' Grid you must re-calculate daylight/view matrix!'
-                    .format(_analysisRecipe.total_point_count)
+                    .format(_analysis_recipe.total_point_count)
                 )

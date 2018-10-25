@@ -13,22 +13,22 @@ at each timestep of the file.
 -
 
     Args:
-        _wea = A Honeybeeplus WEA object.
+        _wea = A Honeybee WEA object.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        dir: A list of direct normal radiation at each timestep of the WEA.
-         diff: A list of diffuse sky solar radiation at each timestep of the WEA.
-         srfRef: A list of ground reflected solar radiation at each timestep of the WEA.
+        dir: A list of direct normal radiation values at each timestep of the WEA.
+        diff: A list of diffuse sky solar radiation values at each timestep of the WEA.
+        glob: A list of global horizontal radiation values at each timestep of the WEA.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Deconstruct Wea"
-ghenv.Component.NickName = 'DecnstrWea'
-ghenv.Component.Message = 'VER 0.0.04\nJUN_07_2018'
+ghenv.Component.NickName = 'decnstrWea'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
 
 if _wea is not None and hasattr(_wea, 'isWea'):
-    dir = [float(x) for x in _wea.direct_normal_radiation]
-    diff = [float(x) for x in _wea.diffuse_horizontal_radiation]
-    glob = [float(x) for x in _wea.global_horizontal_radiation]
+    dir = _wea.direct_normal_radiation
+    diff = _wea.diffuse_horizontal_radiation
+    glob = _wea.global_horizontal_radiation

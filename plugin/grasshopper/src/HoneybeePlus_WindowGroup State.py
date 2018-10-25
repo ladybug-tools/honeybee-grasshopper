@@ -14,10 +14,10 @@ Window Group State
     Args:
         _name: A name for this surface. If the name is not provided Honeybee will
             assign a random name to the surface.
-        radMat_: A Radiance material. If radiance matrial is not provided the
+        rad_mat_: A Radiance material. If radiance matrial is not provided the
             component will use the type to assign the default material 
             (%60 transmittance)for the surface.
-        HBSrfs_: A list of honeybee surfaces that will be added to the scene at this
+        HB_srfs_: A list of honeybee surfaces that will be added to the scene at this
             state. You can use this input to add radiance geometries to the scene at
             this state.
     Returns:
@@ -27,8 +27,8 @@ Window Group State
 """
 
 ghenv.Component.Name = "HoneybeePlus_WindowGroup State"
-ghenv.Component.NickName = 'HBWinGroupState'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
+ghenv.Component.NickName = 'winGroupState'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -40,11 +40,10 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-if _name and (radMat_ or HBSrfs_):
-    if radMat_:
-        radPar = RadianceProperties(radMat_)
+if _name and (rad_mat_ or HB_srfs_):
+    if rad_mat_:
+        rad_par = RadianceProperties(rad_mat_)
     else:
-        radPar = RadianceProperties()
+        rad_par = RadianceProperties()
 
-    state = SurfaceState(_name, SurfaceProperties(Window, radPar), HBSrfs_)
-    
+    state = SurfaceState(_name, SurfaceProperties(Window, rad_par), HB_srfs_)

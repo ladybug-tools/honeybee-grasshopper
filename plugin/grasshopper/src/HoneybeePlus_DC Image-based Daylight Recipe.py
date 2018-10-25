@@ -7,35 +7,30 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Daylight Coefficient Image-based Daylight Recipe.
-Use this recipe to set up annual daylight analysis.
+Annual daylight coefficient image-based recipe.
 
 -
 
     Args:
         _skymtx: A sky matrix or a sky vector. Find honeybee skies under 02::Daylight::Light Sources.
         _views: A list of Honeybee views.
-        _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
+        _analysis_type_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _dmtxPar_: Radiance parameters for Image-based analysis. Find Radiance
+        _dmtx_par_: Radiance parameters for Image-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
-        reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
+        reuse_dmtx_: A boolean to indicate if you want the analysis to use the daylight
             coeff matrix results from the previous study if available (default: False).
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance
+        analysis_recipe: Annual analysis recipe. Connect this recipe to Run Radiance
             Analysis to run a annual analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_DC Image-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffIBRecipe'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
-
-#import honeybee
-#reload(honeybee.radiance.recipe.dc.imagebased)
 
 try:
     from honeybee.radiance.recipe.daylightcoeff.imagebased import DaylightCoeffImageBased
@@ -49,6 +44,6 @@ if _skymtx and _views:
         'Due to Windows limitations on the maximum number of files that can be\n'
         ' open concurrently image-based analysis only works with skyDensity of 1.')
     
-    analysisRecipe = DaylightCoeffImageBased(
-        _skymtx, _views, _analysisType_, _dmtxPar_,
-        reuse_daylight_mtx=reuseDmtx_)
+    analysis_recipe = DaylightCoeffImageBased(
+        _skymtx, _views, _analysis_type_, _dmtx_par_,
+        reuse_daylight_mtx=reuse_dmtx_)

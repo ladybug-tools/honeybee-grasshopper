@@ -7,40 +7,36 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Grid-based Recipe.
+A point-in-time grid-based recipe.
 
 -
 
     Args:
         _sky: A radiance sky. Find honeybee skies under 02::Daylight::Light Sources.
-        _analysisGrids: A list of analysis grids.
-        _analysisType_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
+        _analysis_grids: A list of analysis grids.
+        _analysis_type_: Analysis type. [0] illuminance(lux), [1] radiation (kwh),
             [2] luminance (Candela).
-        _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
+        _radiance_par_: Radiance parameters for Grid-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Grid-based analysis recipe. Connect this recipe to
+        analysis_recipe: Grid-based analysis recipe. Connect this recipe to
             Run Radiance Analysis to run a grid-based analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Recipe"
 ghenv.Component.NickName = 'gridBasedRecipe'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
-#import honeybee
-#reload(honeybee.radiance.recipe.pointintime.gridbased)
 try:
     from honeybee.radiance.recipe.pointintime.gridbased import GridBased
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _sky and _analysisGrids:
-    
+if _sky and _analysis_grids and _analysis_grids[0] is not None:
     # set a sunlight hours analysis recipe together if there are points
-    analysisRecipe = GridBased(_sky, _analysisGrids, _analysisType_,
-                               _radiancePar_)
+    analysis_recipe = GridBased(_sky, _analysis_grids, _analysis_type_,
+                               _radiance_par_)

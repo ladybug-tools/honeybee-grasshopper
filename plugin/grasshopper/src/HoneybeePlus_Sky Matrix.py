@@ -7,7 +7,7 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Sky Matrix.
+A sky matrix representing sky conditions over multiple hours of the year.
 
 -
 
@@ -17,18 +17,17 @@ Sky Matrix.
             avoid sky being overwritten by other skymatrix components.
         north_: An angle in degrees between 0-360 to indicate north direction
             (Default: 0).
-        _wea: Ladybug Wea object.
+        _wea: Ladybug WEA object.
         _density_: A positive intger for sky density. [1] Tregenza Sky,
             [2] Reinhart Sky, etc. (Default: 1)
-        hoys_: Optional list of hours for generating the sky matrix (Default: 0..8759)
+        hoys_: Optional list of hours for generating the sky matrix (Default: 0...8759)
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        skyMTX: Sky matrix for multi-phase daylight analysis.
+        skymtx: Sky matrix for multi-phase daylight analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Sky Matrix"
 ghenv.Component.NickName = 'skyMatrix'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"

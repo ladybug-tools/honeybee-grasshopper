@@ -12,19 +12,19 @@ Write honeybee objects to a Radiance file.
 -
 
     Args:
-        _hbObjects: A list of honeybee objects.
+        _HB_objects: A list of honeybee objects.
         _folder: Path to targert folder (e.g. c:\ladybug\context).
-        _filename: File name as a string.
+        _file_name: File name as a string.
         _write: Set to True to write the file.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        radFile: Fullpath to the radiance file. Use this file to create a radiance
+        rad_file: Fullpath to the radiance file. Use this file to create a radiance
             scene.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Write HBObjects to Radiance"
 ghenv.Component.NickName = 'HBToRad'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -35,6 +35,6 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _hbObjects and _folder and _filename and _write:
-    rf = RadFile(_hbObjects)
-    radFile = rf. write(_folder, _filename, mkdir=True)
+if _HB_objects and _folder and _file_name and _write:
+    rf = RadFile(_HB_objects)
+    rad_file = rf. write(_folder, _file_name, mkdir=True)

@@ -17,28 +17,28 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
 
     Args:
         _complexity_: 0 > low, 1 > Medium, 2 > High
-        _recipeType: 0 > Point-in-time, 1 > Daylight Coeff., 2 > 3Phase, 3 > 5Phase
-        radOptPar_: Use this input to set other Radiance parameters as needed.
+        _recipe_type: 0 > Point-in-time, 1 > Daylight Coeff., 2 > 3Phase, 3 > 5Phase
+        rad_opt_par_: Use this input to set other Radiance parameters as needed.
             You must follow Radiance's standard syntax (e.g. -ps 1 -lw 0.01)
-        vmtxOptPar_: Use this input to set other Radiance parameters for view matrix
+        vmtx_opt_par_: Use this input to set other Radiance parameters for view matrix
             calculation as needed. You must follow Radiance's standard syntax
             (e.g. -ps 1 -lw 0.01).
-        dmtxOptPar_: Use this input to set other Radiance parameters for daylight
+        dmtx_opt_par_: Use this input to set other Radiance parameters for daylight
             matrix calculation as needed. You must follow Radiance's standard syntax
             (e.g. -ps 1 -lw 0.01).
-        smtxOptPar_: Use this input to set other Radiance parameters for sun
+        smtx_opt_par_: Use this input to set other Radiance parameters for sun
             matrix calculation as needed. You must follow Radiance's standard syntax
             (e.g. -ps 1 -lw 0.01).
     Returns:
-        radPar: Radiance parameters.
-        vmtxPar: Radiance parameters for view matrix calculation.
-        dmtxPar: Radiance parameters for daylight matrix calculation.
-        smtxPar: Radiance parameters for direct sun matrix calculation.
+        rad_par: Radiance parameters.
+        vmtx_par: Radiance parameters for view matrix calculation.
+        dmtx_par: Radiance parameters for daylight matrix calculation.
+        smtx_par: Radiance parameters for direct sun matrix calculation.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Parameters Image-based"
 ghenv.Component.NickName = 'RADParImageBased'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
@@ -50,19 +50,19 @@ except ImportError as e:
     
 
 _complexity_ = _complexity_ or 0
-_recipeType_ = _recipeType_ or 0
+_recipe_type_ = _recipe_type_ or 0
 
-radPar, vmtxPar, dmtxPar, smtxPar = \
-    param.get_radiance_parameters_image_based(_complexity_, _recipeType_)
+rad_par, vmtx_par, dmtx_par, smtx_par = \
+    param.get_radiance_parameters_image_based(_complexity_, _recipe_type_)
     
-if radOptPar_ and radPar:
-    radPar.import_parameter_values_from_string(radOptPar_)
+if rad_opt_par_ and rad_par:
+    rad_par.import_parameter_values_from_string(rad_opt_par_)
 
-if vmtxOptPar_ and vmtxPar:
-    vmtxPar.import_parameter_values_from_string(vmtxOptPar_)
+if vmtx_opt_par_ and vmtx_par:
+    vmtx_par.import_parameter_values_from_string(vmtx_opt_par_)
 
-if dmtxOptPar_ and dmtxPar:
-    dmtxPar.import_parameter_values_from_string(dmtxOptPar_)
+if dmtx_opt_par_ and dmtx_par:
+    dmtx_par.import_parameter_values_from_string(dmtx_opt_par_)
 
-if smtxOptPar_ and smtxPar:
-    smtxPar.import_parameter_values_from_string(smtxOptPar_)    
+if smtx_opt_par_ and smtx_par:
+    smtx_par.import_parameter_values_from_string(smtx_opt_par_)    
