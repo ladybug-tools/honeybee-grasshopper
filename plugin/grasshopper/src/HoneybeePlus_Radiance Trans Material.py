@@ -39,7 +39,7 @@ ghenv.Component.NickName = 'radTransMat'
 ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
-ghenv.Component.AdditionalHelpFromDocStrings = "1"
+ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
     from honeybee.radiance.material.trans import Trans

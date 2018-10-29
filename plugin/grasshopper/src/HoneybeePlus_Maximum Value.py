@@ -11,10 +11,10 @@ Maximum values for a grid.
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
+        _analysis_grid: An analysis grid output from run Radiance analysis.
         hoys_: An optional list of hours for hours of the year if you don't want
             the analysis to be calculated for all the hours.
-        blindStates_: A list of blind states for light sources as tuples for
+        blind_states_: A list of blind states for light sources as tuples for
             hours of the year. You can use Dynamic Blinds Schedule component
             to generate this schedule. If left empty the first state of each
             window group will be used.
@@ -27,19 +27,19 @@ Maximum values for a grid.
 
 ghenv.Component.Name = "HoneybeePlus_Maximum Value"
 ghenv.Component.NickName = 'maxValue'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_08_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
-if _analysisGrid:
+if _analysis_grid:
     _modes = ('total', 'direct', 'diffuse')
     _mode_ = _mode_ or 0
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
-    states = _analysisGrid.parse_blind_states(blindStates_)
+    states = _analysis_grid.parse_blind_states(blind_states_)
     print('Calculating max values from {} values.'.format(_modes[_mode_]))
     if _mode_ < 2:
-        values = (v[_mode_] for v in _analysisGrid.max_values_by_id(blinds_state_ids=states))
+        values = (v[_mode_] for v in _analysis_grid.max_values_by_id(blinds_state_ids=states))
     else:
-        cValues = _analysisGrid.max_values_by_id(blinds_state_ids=states)
+        cValues = _analysis_grid.max_values_by_id(blinds_state_ids=states)
         values = (v[0] - v[1] for v in cValues)
