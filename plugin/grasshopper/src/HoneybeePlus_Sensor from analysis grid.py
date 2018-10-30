@@ -12,8 +12,8 @@ Sensor from analysis grid
 -
 
     Args:
-        _analysisGrid: An analysis grid output from run Radiance analysis.
-        _index_: An integer to pick the sensor from the analysis grid (default: 0).
+        _analysis_grid: An analysis grid output from a Radiance analysis.
+        _index_: An integer to pick the index of the sensor in the analysis_grid (default: 0).
     Returns:
         position: Position of the sensor
         sensor: Sensor object. Use this sensor to generate blind schedules for
@@ -22,7 +22,7 @@ Sensor from analysis grid
 
 ghenv.Component.Name = "HoneybeePlus_Sensor from analysis grid"
 ghenv.Component.NickName = 'sensor'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -32,11 +32,11 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-if _analysisGrid:
-    if _analysisGrid.digit_sign == 1:
-        _analysisGrid.load_values_from_files()
+if _analysis_grid:
+    if _analysis_grid.digit_sign == 1:
+        _analysis_grid.load_values_from_files()
 
-    id = _index_ or 0
-    sensor = _analysisGrid[id]
+    id = _index_ if _index_ is not None else 0
+    sensor = _analysis_grid[id]
     pt = (sensor.location.x, sensor.location.y, sensor.location.z)
     position = lg.sphere(pt, 0.5)

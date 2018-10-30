@@ -7,7 +7,7 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Standard Radiance CIE Sky.
+A point-in-time standard Radiance CIE sky.
 
     Args:
         north_: A number between 0 and 360 that represents the degrees off from
@@ -21,14 +21,14 @@ Standard Radiance CIE Sky.
             [0] Sunny with sun, [1] sunny without sun, [2] intermediate with sun
             [3] intermediate without sun, [4] cloudy sky, [5] uniform sky (default: 0)
     Returns:
-        sky: Honeybee sky. You can use this sky to create a grid-based daylight
-            recipe.
+        sky: Honeybee sky. You can use this sky to create a point-in-time
+            daylight recipe.
 
 """
 
 ghenv.Component.Name = "HoneybeePlus_CIE Standard Sky"
 ghenv.Component.NickName = 'CIESky'
-ghenv.Component.Message = 'VER 0.0.04\nSEP_10_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -43,9 +43,9 @@ if _location:
     if not hasattr(_location, 'isLocation'):
         _location = Location.from_location(_location)
     # set default values if they are not set
-    north_ = north_ or 0
-    _type_ = _type_ or 0
-    _month_ = _month_ or 6
-    _day_ = _day_ or 21
-    _hour_ = _hour_ or 12
+    north_ = 0 if north_ is None else north_
+    _type_ = 0 if _type_ is None else _type_
+    _month_ = 6 if _month_ is None else _month_
+    _day_ = 21 if _day_ is None else _day_
+    _hour_ = 12 if _hour_ is None else _hour_
     sky = CIE(_location, _month_, _day_, _hour_, north_, _type_)

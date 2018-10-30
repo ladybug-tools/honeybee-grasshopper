@@ -7,20 +7,20 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Sky with certain illuminance.
+A uniform sky with certain illuminance.
 
     Args:
         _value: Desired value for sky horizontal illuminance in lux
             (default: 10000).
     Returns:
-        sky: Honeybee sky. You can use this sky to create a grid-based daylight
-            recipe.
+        sky: Honeybee sky. You can use this sky to create a point-in-time
+            daylight recipe.
 
 """
 
 ghenv.Component.Name = "HoneybeePlus_Certain Illuminance"
 ghenv.Component.NickName = 'certainIllum'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -30,5 +30,5 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-_value_ = _value_ or 10000
+_value_ = 10000 if _value_ is None else _value_
 sky = CertainIlluminanceLevel(_value_)

@@ -20,10 +20,10 @@ group.
         _geo: A list of input geometry.
         name_: A name for this surface. If the name is not provided Honeybee will
             assign a random name to the surface.
-        radMat_: A Radiance material. If radiance matrial is not provided the
+        rad_mat_: A Radiance material. If radiance matrial is not provided the
             component will use the type to assign the default material 
             (%60 transmittance)for the surface.
-        epProp_: EnergyPlus properties.
+        ep_prop_: EnergyPlus properties.
     Returns:
         report: Reports, errors, warnings, etc.
         HBWinSrf: Honeybee window surface. Use this surface directly for daylight
@@ -33,7 +33,7 @@ group.
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Group"
 ghenv.Component.NickName = 'HBWinGroup'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -47,18 +47,18 @@ except ImportError as e:
 
 if _name and len(_geo)!=0 and _geo[0]!=None:
 
-    if radMat_:
-        assert not radMat_.is_opaque, \
+    if rad_mat_:
+        assert not rad_mat_.is_opaque, \
             TypeError('Radiance material must be a Window material not {}.'.format(type(m)))
-        radProp_ = RadianceProperties(radMat_)
+        rad_prop_ = RadianceProperties(rad_mat_)
     else:
-        radProp_ = RadianceProperties()
+        rad_prop_ = RadianceProperties()
 
-    epProp_ = None
+    ep_prop_ = None
     _type_ = 5  # in the interface we use dynamic surfaces only for fenestration
-    isTypeSetByUser = True
-    isNameSetByUser = True
+    is_type_set_by_user = True
+    is_name_set_by_user = True
     
-    HBWinGroup = HBDynamicSurface.from_geometry(
-        _name, _geo, _type_, isNameSetByUser, isTypeSetByUser, radProp_,
-        epProp_, states_, group=True)
+    HB_win_group = HBDynamicSurface.from_geometry(
+        _name, _geo, _type_, is_name_set_by_user, is_type_set_by_user, rad_prop_,
+        ep_prop_, states_, group=True)

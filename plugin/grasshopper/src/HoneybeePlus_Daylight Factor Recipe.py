@@ -7,23 +7,22 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Daylight factor Recipe.
+Daylight factor recipe.
 
 -
 
     Args:
-        _analysisGrids: A list list of analysis grids.
-        _radiancePar_: Radiance parameters for Grid-based analysis. Find Radiance
+        _analysis_grids: A list list of analysis grids.
+        _radiance_par_: Radiance parameters for Grid-based analysis. Find Radiance
             parameters node under 03::Daylight::Recipes.
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Daylight factor analysis recipe. Connect this recipe to
+        analysis_recipe: Daylight factor analysis recipe. Connect this recipe to
             Run Radiance Analysis to run a grid-based analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Daylight Factor Recipe"
 ghenv.Component.NickName = 'DFRecipe'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -35,5 +34,5 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _analysisGrids:
-    analysisRecipe = GridBased(_analysisGrids, _radiancePar_)
+if _analysis_grids and _analysis_grids[0] is not None:
+    analysis_recipe = GridBased(_analysis_grids, _radiance_par_)

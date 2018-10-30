@@ -7,7 +7,7 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Convert a stat file into a WEA object with an original ASHRAE Clear Sky.
+Create a WEA object with an original ASHRAE Clear Sky.
 
 -
 
@@ -24,7 +24,6 @@ Convert a stat file into a WEA object with an original ASHRAE Clear Sky.
         timestep_: An integer representing the timestep with which to make the
             WEA object.  Default is set to 1 for 1 step per hour of the year.
     Returns:
-        readMe!: Reports, errors, warnings, etc.
         wea: A wea object from stat file. This wea object represents an original 
             ASHRAE Clear Sky, which is intended to determine peak solar load and
             sizing parmeters for HVAC systems.
@@ -32,10 +31,10 @@ Convert a stat file into a WEA object with an original ASHRAE Clear Sky.
 
 ghenv.Component.Name = "HoneybeePlus_ClearSky"
 ghenv.Component.NickName = 'ClearSky'
-ghenv.Component.Message = 'VER 0.0.04\nJUN_05_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
-ghenv.Component.AdditionalHelpFromDocStrings = "0"
+ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
     from ladybug.wea import Wea
@@ -43,8 +42,6 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _location:
-    if timestep_ == None:
-        timestep_ = 1
-    if clearness_ == None:
-        clearness_ = 1
+    timestep_ = 1 if timestep_ is None else timestep_
+    clearness_ = 1 if clearness_ is None else clearness_
     wea = Wea.from_ashrae_clear_sky(_location, clearness_, timestep_)

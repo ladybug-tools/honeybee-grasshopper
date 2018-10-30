@@ -13,17 +13,16 @@ Radiance Glass Material from visible transmitance for red, green and blue
 
     Args:
         _name: Material name.
-        _rVis_: Visible transmittance for red channel (0..1).
-        _gVis_: Visible transmittance for green channel (0..1).
-        _bVis_: Visible transmittance for blue channel (0..1).
+        _r_vis_: Visible transmittance for red channel (0..1).
+        _g_vis_: Visible transmittance for green channel (0..1).
+        _b_vis_: Visible transmittance for blue channel (0..1).
     Returns:
-        readMe!: Reports, errors, warnings, etc.
         material: Radiance glass material.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Glass Material 3"
-ghenv.Component.NickName = 'radGlassMaterial3'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_15_2018'
+ghenv.Component.NickName = 'radGlassMat3'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -34,7 +33,7 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _name:
-    _rVis_ = _rVis_ or 0.6
-    _gVis_ = _gVis_ or 0.6
-    _bVis_ = _bVis_ or 0.6
-    material = Glass(_name, _rVis_, _gVis_, _bVis_)
+    _r_vis_ = 0.6 if _r_vis_ is None else _r_vis_
+    _g_vis_ = 0.6 if _g_vis_ is None else _g_vis_
+    _b_vis_ = 0.6 if _b_vis_ is None else _b_vis_
+    material = Glass(_name, _r_vis_, _g_vis_, _b_vis_)

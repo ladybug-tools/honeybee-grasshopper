@@ -15,7 +15,7 @@ Hourly results for a sensor for several hours during the year.
         _sensor: An analysis point/sensor.
         hoys_: An optional list of hours for hours of the year if you don't want
             the analysis to be calculated for all the hours.
-        blindStates_: A list of blind states for light sources as tuples for
+        blind_states_: A list of blind states for light sources as tuples for
             hours of the year. You can use Dynamic Blinds Schedule component
             to generate this schedule. If left empty the first state of each
             window group will be used.
@@ -23,12 +23,13 @@ Hourly results for a sensor for several hours during the year.
             diret values if available and 2 returns sky + diffuse values if
             available.
     Returns:
+        report: Reports, errors, warnings, etc.
         values: List of values for hours of the year.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Sensor Hourly Values"
 ghenv.Component.NickName = 'senHourlyValues'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -40,7 +41,7 @@ if _sensor:
 
     assert _mode_ < 3, '_mode_ can only be 0: total, 1: direct or 2: sky.'
 
-    states = _sensor.parse_blind_states(blindStates_)
+    states = _sensor.parse_blind_states(blind_states_)
 
     print('Loading {} values for several hours.'.format(_modes[_mode_]))
     

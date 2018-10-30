@@ -15,20 +15,20 @@ Honeybee Window Surface
         _geo: A list of input geometry.
         names_: A name or a list of names for input geometry. If the name is not
             provided Honeybee will assign a random name to the surface.
-        radMat_: A Radiance material. If radiance matrial is not provided the
+        rad_mat_: A Radiance material. If radiance matrial is not provided the
             component will use the type to assign the default material 
             (%60 transmittance)for the surface.
-        epProp_: EnergyPlus properties.
+        ep_prop_: EnergyPlus properties.
     Returns:
         report: Reports, errors, warnings, etc.
-        HBWinSrf: Honeybee window surface. Use this surface directly for daylight
+        HB_win_srf: Honeybee window surface. Use this surface directly for daylight
             simulation or add it to a honeybee surface or a honeybee zone for
             energy simulation.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Window Surface"
 ghenv.Component.NickName = 'HBWinSrf'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -40,16 +40,16 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if len(_geo)!=0 and _geo[0]!=None:
-    isNameSetByUser = False
+    is_name_set_by_user = False
     if names_:
-        isNameSetByUser = True
+        is_name_set_by_user = True
 
-    if radMat_:
-        assert not radMat_.is_opaque, \
+    if rad_mat_:
+        assert not rad_mat_.is_opaque, \
             TypeError('Radiance material must be a Window material not {}.'.format(type(m)))
-        radProp_ = RadianceProperties(radMat_)
+        rad_prop_ = RadianceProperties(rad_mat_)
     else:
-        radProp_ = RadianceProperties()
+        rad_prop_ = RadianceProperties()
 
-    epProp_ = None
-    HBWinSrf = HBFenSurface.from_geometry(names_, _geo, isNameSetByUser, radProp_, epProp_)
+    ep_prop_ = None
+    HB_win_srf = HBFenSurface.from_geometry(names_, _geo, is_name_set_by_user, rad_prop_, ep_prop_)
