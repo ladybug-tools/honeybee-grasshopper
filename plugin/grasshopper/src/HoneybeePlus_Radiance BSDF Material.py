@@ -12,8 +12,8 @@ Radiance BSDF Material
 -
 
     Args:
-        _xmlfile: Path to an xml file. Data will not be cached in memory.
-        _upOrientation_: (x, y ,z) vector that sets the hemisphere that the
+        _xmlfile: Path to a BSDF xml file. Data will not be cached in memory.
+        _up_vec_: (x, y ,z) vector that sets the hemisphere that the
             BSDF material faces.  For materials that are symmetrical about
             the HBSrf plane (like non-angled venitian blinds), this can be
             any vector that is not perfectly normal to the HBSrf. For
@@ -21,7 +21,7 @@ Radiance BSDF Material
             should be coordinated with the direction the HBSrfs are facing.
             The default is set to (0.01, 0.01, 1.00), which should hopefully
             not be perpendicular to any typical HBSrf.
-        _upVector_: Optional number to set the thickness of the BSDF material.
+        thickness_: Optional number to set the thickness of the BSDF material.
             (default: 0)
     Returns:
         readMe!: Reports, errors, warnings, etc.
@@ -29,8 +29,8 @@ Radiance BSDF Material
 """
 
 ghenv.Component.Name = "HoneybeePlus_Radiance BSDF Material"
-ghenv.Component.NickName = 'BSDFMaterial'
-ghenv.Component.Message = 'VER 0.0.05\nMAR_14_2018'
+ghenv.Component.NickName = 'radBSDFMat'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -42,4 +42,4 @@ except ImportError as e:
 
 if _xmlfile:
     name = None  # will be generated from xml file name
-    material = BSDF(_xmlfile, name, _upVector_, thickness_)
+    material = BSDF(_xmlfile, name, _up_vec_, thickness_)

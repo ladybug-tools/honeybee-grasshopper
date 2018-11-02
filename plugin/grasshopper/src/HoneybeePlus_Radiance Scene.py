@@ -16,14 +16,17 @@ the geometries and writing the files in parametric studies.
 -
 
     Args:
-        _radFiles: List of radiance files. Valid files are *.rad, *.mat and *.oct.
-        _copyLocal_: Set to True to copy the files to the analysis folder (Default: True).
+        _rad_files: List of radiance files. Valid files are *.rad, *.mat and *.oct.
+        _copy_local_: Set to True to copy the files to the analysis folder (Default: True).
         _overwrite_: Set to True to overwrite the files if already exist (Default: True).
+    Returns:
+        rad_scene: A Radiance Scene that can be plugged into a Radiance Analysis in order
+            to account for surrounding context.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Scene"
-ghenv.Component.NickName = 'RadScene'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
+ghenv.Component.NickName = 'radScene'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -33,5 +36,5 @@ try:
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
-if _radFiles and _radFiles[0] is not None:
-    radScene = StaticScene(_radFiles, _copyLocal_, _overwrite_)
+if _rad_files and _rad_files[0] is not None:
+    rad_scene = StaticScene(_rad_files, _copy_local_, _overwrite_)

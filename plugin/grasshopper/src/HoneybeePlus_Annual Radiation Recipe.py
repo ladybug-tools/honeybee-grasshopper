@@ -7,41 +7,36 @@
 # @license GPL-3.0+ <http://spdx.org/licenses/GPL-3.0+>
 
 """
-Annual radiation analysis
+Annual radiation analysis recipe.
 
 -
 
     Args:
         _skymtx: A sky matrix or a sky vector. Find honeybee skies under 02::Daylight::Light Sources.
-        _analysisGrids: A list of Honeybee analysis grids.
-        _dmtxPar_: Radiance parameters for Daylight matrix calculation. Find
+        _analysis_grids: A list of Honeybee analysis grids.
+        _dmtx_par_: Radiance parameters for Daylight matrix calculation. Find
             Radiance parameters node under 03::Daylight::Recipe.
-        reuseDmtx_: A boolean to indicate if you want the analysis to use the daylight
+        reuse_dmtx_: A boolean to indicate if you want the analysis to use the daylight
             coeff matrix results from the previous study if available (default: False).
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        analysisRecipe: Annual analysis recipe. Connect this recipe to Run Radiance
+        analysis_recipe: Annual analysis recipe. Connect this recipe to Run Radiance
             Analysis to run a annual analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Annual Radiation Recipe"
-ghenv.Component.NickName = 'radiationRecipe'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.NickName = 'annualRadRecipe'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 
-#import honeybee
-#reload(honeybee.radiance.recipe.recipedcutil)
-#reload(honeybee.radiance.recipe.daylightcoeff.gridbased)
-#reload(honeybee.radiance.recipe.radiation.gridbased)
 try:
     from honeybee.radiance.recipe.radiation.gridbased import GridBased
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 
-if _skymtx and _analysisGrids and _analysisGrids[0] != None:
-    reuseDmtx_ = bool(reuseDmtx_)
-    analysisRecipe = GridBased(_skymtx, _analysisGrids, _dmtxPar_, reuseDmtx_)
+if _skymtx and _analysis_grids and _analysis_grids[0] is not None:
+    reuse_dmtx_ = bool(reuse_dmtx_)
+    analysis_recipe = GridBased(_skymtx, _analysis_grids, _dmtx_par_, reuse_dmtx_)

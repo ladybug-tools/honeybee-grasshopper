@@ -13,7 +13,7 @@ Dynamic Blinds Schedule
 
     Args:
         _sensor: A single sensor from the analsysi Grid.
-        _blindCombs_: Suggested blind state combinations of window groups for meeting the logic.
+        _blind_combs_: Suggested blind state combinations of window groups for meeting the logic.
             States can be one of the following:
             -1 = No light from window source (opaque)
             0 = Normal window state (typically transparent)
@@ -34,14 +34,16 @@ Dynamic Blinds Schedule
             by default.
         _logic_: Blinds logic. You can use ill, ill_dir and h(our) as input
             values. Default is ill > 3000. You can also overwrite the logic
-            by opening the components and edit 'checkLogic' function.
+            by opening the components and edit 'check_logic' function.
         data_: optional data to pass along side the values which can be used
             to set-up the logic. This input yet needs to be tested.
+
     Returns:
-        blindStates: Selected blind states based on input logic.
-        blindStIndex: Index of selected blind state from input _blindStates_.
-        illumTotal: Sensor total illuminance values.
-        illumDirect: Sensor direct illuminance values. This value won't be available
+        report: Reports, errors, warnings, etc.
+        blind_states: Selected blind states based on input logic.
+        blind_st_index: Index of selected blind state from input _blind_combs_.
+        illum_total: Sensor total illuminance values.
+        illum_direct: Sensor direct illuminance values. This value won't be available
             for 3-Phase recipe.
         success: A boolean that shows if the logic is satisfied by using the current
             combinations of shadings.
@@ -49,7 +51,7 @@ Dynamic Blinds Schedule
 
 ghenv.Component.Name = "HoneybeePlus_Dynamic Blinds Schedule"
 ghenv.Component.NickName = 'dynBlindSchd'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.04\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
@@ -66,20 +68,20 @@ if _sensor:
     
         logic = compile('r = {}'.format(_logic_), '<string>', 'exec')
         data = data_
-        def checkLogic(ill, ill_dir, hour, *data, **kwargs):
+        def check_logic(ill, ill_dir, hour, *data, **kwargs):
             exec(logic)
             return r
     
-        setattr(sensor, 'logic', checkLogic)
+        setattr(sensor, 'logic', check_logic)
     else:
         setattr(sensor, 'logic', sensor._logic)
 
     
-    states = sensor.parse_blind_states(_blindCombs_)
+    states = sensor.parse_blind_states(_blind_combs_)
     results = sensor.blinds_state(sensor.hoys, states)
     if results:
-        blindStates = (str(d) for d in results[0])  # tuple is not a standard GH Type
-        blindStIndex = results[1]
-        illumTotal = results[2]
-        illumDirect = results[3]
+        blind_states = (str(d) for d in results[0])  # tuple is not a standard GH Type
+        blind_st_index = results[1]
+        illum_total = results[2]
+        illum_direct = results[3]
         success = results[4]

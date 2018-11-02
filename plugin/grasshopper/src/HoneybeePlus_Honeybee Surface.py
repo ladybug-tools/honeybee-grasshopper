@@ -23,11 +23,11 @@ Honeybee Surface
             2.5 SlabOnGrade    2.75 ExposedFloor
             3   Ceiling        4   AirWall
             5   Window         6   Context
-        radMat_: Radiance material. If radiance matrial is not provided the component
+        rad_mat_: Radiance material. If radiance matrial is not provided the component
             will use the type to assign the default material for the surface. If type
             is also not assigned by user. Honeybee will guess the type of the surface
             based on surface normal vector direction at the center of the surface.
-        epProp_: EnergyPlus properties. If EnergyPlus properties is not provided the
+        ep_prop_: EnergyPlus properties. If EnergyPlus properties is not provided the
             component will use the "type" to assign the EnergyPlus properties for this
             surface. If type is also not assigned by user Honeybee will guess the type
             of the surface based on surface normal vector direction at the center of
@@ -35,13 +35,13 @@ Honeybee Surface
         
     Returns:
         report: Reports, errors, warnings, etc.
-        HBSrf: Honeybee surface. Use this surface directly for daylight simulation
+        HB_srf: Honeybee surface. Use this surface directly for daylight simulation
             or to create a Honeybee zone for Energy analysis.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Surface"
 ghenv.Component.NickName = 'HBSurface'
-ghenv.Component.Message = 'VER 0.0.05\nMAY_14_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -54,17 +54,17 @@ except ImportError as e:
 
 
 if len(_geo)!=0 and _geo[0]!=None:
-    isNameSetByUser = False
+    is_name_set_by_user = False
     if names_:
-        isNameSetByUser = True
+        is_name_set_by_user = True
         
-    isTypeSetByUser = True
+    is_type_set_by_user = True
     if not _type_:
-        isTypeSetByUser = False
+        is_type_set_by_user = False
     
-    radProp_ = RadianceProperties(radMat_) if radMat_ else RadianceProperties()
+    radProp_ = RadianceProperties(rad_mat_) if rad_mat_ else RadianceProperties()
     
-    epProp_ = None
+    ep_prop_ = None
     
-    HBSrf = HBSurface.from_geometry(names_, _geo, _type_, isNameSetByUser,
-                                    isTypeSetByUser, radProp_, epProp_)
+    HB_srf = HBSurface.from_geometry(names_, _geo, _type_, is_name_set_by_user,
+                                    is_type_set_by_user, radProp_, ep_prop_)

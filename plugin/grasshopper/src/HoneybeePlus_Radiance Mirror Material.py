@@ -13,15 +13,14 @@ Radiance Mirror Material from Single Reflectance Value
 
     Args:
         _name: Material name
-        _reflect_: Mirror reflectance
+        _reflect_: Mirror reflectance as a number between 0 and 1.
     Returns:
-        readMe!: Reports, errors, warnings, etc.
-        material: Radiance opaque material
+        material: Radiance mirror material
 """
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Mirror Material"
-ghenv.Component.NickName = 'radMirrorMaterial'
-ghenv.Component.Message = 'VER 0.0.05\nJUN_09_2018'
+ghenv.Component.NickName = 'radMirrorMat'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
@@ -32,6 +31,5 @@ except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
 if _name:
-    _reflect_ = _reflect_ or 0.35
-    material = Mirror.by_single_reflect_value(
-        _name, _reflect_)
+    _reflect_ = 0.35 if _reflect_ is None else _reflect_
+    material = Mirror.by_single_reflect_value(_name, _reflect_)

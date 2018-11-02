@@ -12,11 +12,11 @@ Hourly results for a sensor for several hours during the year.
 -
 
     Args:
-        _imgCollection: An imgage collection from the results of an image-based
+        _img_collection: An imgage collection from the results of an image-based
             study.
         hoys_: An optional list of hours for hours of the year if you don't want
             the analysis to be calculated for all the hours.
-        blindStates_: A list of blind states for light sources as tuples for
+        blind_states_: A list of blind states for light sources as tuples for
             hours of the year. You can use Dynamic Blinds Schedule component
             to generate this schedule. If left empty the first state of each
             window group will be used.
@@ -26,27 +26,28 @@ Hourly results for a sensor for several hours during the year.
             2 returns the combined image of the sources with direct values
             3 returns the combined image of the sources with sun values
     Returns:
+        report: Reports, errors, warnings, etc.
         values: List of values for hours of the year.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Generate Images"
 ghenv.Component.NickName = 'genImages'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
-if _imgCollection:
+if _img_collection:
     _modes = ('combined', 'total', 'direct', 'diffuse')
     _mode_ = _mode_ or 0
-    hoys_ = hoys_ or _imgCollection.hoys
+    hoys_ = hoys_ or _img_collection.hoys
 
     assert _mode_ < 4, \
         '_mode_ can only be 0: combined, 1: total, 2: direct or 3: sky.'
 
-    states = _imgCollection.parse_blind_states(blindStates_)
+    states = _img_collection.parse_blind_states(blind_states_)
     
-    print(_imgCollection.details)
+    print(_img_collection.details)
     print('Loading {} values for several hours.'.format(_modes[_mode_]))
     
-    images = _imgCollection.generate_combined_images_by_id(hoys_, states, _mode_) 
+    images = _img_collection.generate_combined_images_by_id(hoys_, states, _mode_) 

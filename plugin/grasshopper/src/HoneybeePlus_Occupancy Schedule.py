@@ -19,8 +19,8 @@ Occupancy Schedule from hourly values.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule"
-ghenv.Component.NickName = 'occSchdule'
-ghenv.Component.Message = 'VER 0.0.04\nFEB_07_2018'
+ghenv.Component.NickName = 'occSchedule'
+ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
