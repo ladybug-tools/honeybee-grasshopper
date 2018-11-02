@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+plugin/grasshopper/sampleFiles/13_daylight_coefficient_sda.gh
+plugin/grasshopper/sampleFiles/14_annual_daylight_gridbased_test_docker.gh
+plugin/grasshopper/sampleFiles/15_direct_reflection_gridbased.gh
