@@ -33,16 +33,16 @@ at every timestep of a Wea.
             isotropic sky model.
     Returns:
         readMe!: Reports, errors, warnings, etc.
-        total: A list of total solar radiation at each timestep of the WEA.
-        dir: A list of direct solar radiation at each timestep of the WEA.
-        diff: A list of diffuse solar radiation at each timestep of the WEA.
-        ref: A list of ground reflected solar radiation at each
+        total: A list of total solar irradiance at each timestep of the WEA.
+        dir: A list of direct solar irradiance at each timestep of the WEA.
+        diff: A list of diffuse solar irradiance at each timestep of the WEA.
+        ref: A list of ground reflected solar irradiance at each
             timestep of the WEA.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Directional Solar"
 ghenv.Component.NickName = 'directionSolar'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nJAN_24_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
@@ -56,4 +56,4 @@ if _wea is not None and hasattr(_wea, 'isWea'):
     
     # compute solar on surface
     total, dir, diff, ref = \
-        _wea.directional_radiation(_alt_, _az_, _g_ref_, iso_t_)
+        _wea.directional_irradiance(_alt_, _az_, _g_ref_, iso_t_)
