@@ -22,7 +22,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_10_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -37,13 +37,24 @@ from distutils import dir_util
 from Grasshopper.Folders import UserObjectFolders
 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12
 
+def copy_tree_full(sourceFolder, libFolder):
+    for file in os.listdir(sourceFolder):
+        src_file_path = os.path.join(sourceFolder, file)
+        dst_file_path = os.path.join(libFolder, file)
+        if os.path.isfile(src_file_path):
+            shutil.copyfile(src_file_path, dst_file_path)
+        elif os.path.isdir(src_file_path):
+            if not os.path.isdir(dst_file_path):
+                os.mkdir(dst_file_path)
+            copy_tree_full(src_file_path, dst_file_path)
+
 def updateHoneybee():
     
     """
     This code will download honeybee and honeybee[+] library from github and
     update the current installation.
     """
-    repos = ('ladybug', 'ladybug-grasshopper', 'honeybee', 'honeybee-grasshopper')
+    repos = ('ladybug', 'ladybug-comfort', 'ladybug-grasshopper', 'honeybee', 'honeybee-grasshopper')
     
     targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
     try:
@@ -58,7 +69,7 @@ def updateHoneybee():
     
     # delete current folders 
     for f in repos:
-        libFolder = os.path.join(targetDirectory, f)
+        libFolder = os.path.join(targetDirectory, f.replace('-', '_'))
         if os.path.isdir(libFolder):
             try:
                 print 'removing {}'.format(libFolder)
@@ -98,10 +109,16 @@ def updateHoneybee():
     
     # copy files to folder.
     for f in repos:
-        sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
-        libFolder = os.path.join(targetDirectory, f.split('-')[0])
+        if f.endswith('grasshopper'):
+            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
+            libFolder = os.path.join(targetDirectory, f.split('-')[0])
+        else:
+            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.replace('-', '_'))
+            libFolder = os.path.join(targetDirectory, f.replace('-', '_'))
+        if not os.path.isdir(libFolder):
+            os.mkdir(libFolder)
         print 'Copying {} source code to {}'.format(f, libFolder)
-        dir_util.copy_tree(sourceFolder, libFolder)
+        copy_tree_full(sourceFolder, libFolder)
     
     # copy user-objects
     uofolder = UserObjectFolders[0]
