@@ -20,9 +20,10 @@ solar access and radiation studies.
             hours of the year. You can use Dynamic Blinds Schedule component
             to generate this schedule. If left empty the first state of each
             window group will be used.
-        _mode_: An integer between 0-2. 0 returns that total values, 1 returns
-            diret values if available and 2 returns sky + diffuse values if
-            available.
+        _mode_: An integer between 0-2 representing the type of value to output.
+            0 = total values
+            1 = direct values (if available)
+            2 = diffuse sky + reflected values (if available).
     Returns:
         report: Reports, errors, warnings, etc.
         values: A list of cumulative values for each sensor.
@@ -30,7 +31,7 @@ solar access and radiation studies.
 
 ghenv.Component.Name = "HoneybeePlus_Cumulative Value"
 ghenv.Component.NickName = 'cumValue'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nAPR_27_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
