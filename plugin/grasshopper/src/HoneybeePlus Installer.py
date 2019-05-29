@@ -22,7 +22,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.05\nMAR_10_2019'
+ghenv.Component.Message = 'VER 0.0.05\nMAY_29_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -54,7 +54,9 @@ def updateHoneybee():
     This code will download honeybee and honeybee[+] library from github and
     update the current installation.
     """
-    repos = ('ladybug', 'ladybug-comfort', 'ladybug-grasshopper', 'honeybee', 'honeybee-grasshopper')
+    repos = ('ladybug', 'ladybug-geometry', 'ladybug-rhino', 'ladybug-dotnet',
+             'ladybug-comfort', 'ladybug-grasshopper',
+             'honeybee', 'honeybee-grasshopper')
     
     targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
     try:
