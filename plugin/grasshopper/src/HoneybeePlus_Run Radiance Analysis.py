@@ -24,14 +24,13 @@ Run Radiance Analysis
             _write is also set to True.
     Returns:
         report: Reports, errors, warnings, etc.
-        legend_par: Suggested legend parameters based on the recipe.
         outputs: Outputs of the analysis. Outputs can be a list of image
             collections or a list of analysis grids.
 """
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nJUN_25_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -53,8 +52,6 @@ if _HB_objects and [0] is not None and _analysis_recipe and _write:
    
     assert hasattr(_analysis_recipe, 'isAnalysisRecipe'), \
         ValueError("\n{} is not a Honeybee recipe.".format(_analysis_recipe))
-    
-    legend_par = _analysis_recipe.legend_parameters
 
     if _write == True:
         # Add Honeybee objects to the recipe
