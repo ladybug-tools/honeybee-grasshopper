@@ -38,7 +38,7 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Sunlight Exposure"
 ghenv.Component.NickName = 'ASE'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nAUG_10_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
@@ -46,14 +46,14 @@ ghenv.Component.AdditionalHelpFromDocStrings = "3"
 try:
     import ladybug.geometry as lg
     import ladybug.output as output
-    import ladybug.legendparameters as lp
+    import ladybug.legend as lp
     import ladybug.color as color
 except ImportError as e:
     raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
 
 
 col = color.Colorset.original()
-legend_par = lp.LegendParameters((0, 250), colors=col)
+legend_par = lp.LegendParameters(0, 250, colors=col)
 
 if _analysis_grid:
     states = _analysis_grid.parse_blind_states(blind_states_)

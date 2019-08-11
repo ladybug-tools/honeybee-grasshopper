@@ -30,7 +30,7 @@ Run Radiance Analysis
 
 ghenv.Component.Name = "HoneybeePlus_Run Radiance Analysis"
 ghenv.Component.NickName = 'runRadiance'
-ghenv.Component.Message = 'VER 0.0.05\nJUN_25_2019'
+ghenv.Component.Message = 'VER 0.0.05\nAUG_10_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -57,6 +57,7 @@ if _HB_objects and [0] is not None and _analysis_recipe and _write:
         # Add Honeybee objects to the recipe
         _analysis_recipe.hb_objects = _HB_objects
         _analysis_recipe.scene = rad_scene_
+        legend_par = _analysis_recipe.legend_parameters
 
         batchFile = _analysis_recipe.write(_folder_, _name_)
 
