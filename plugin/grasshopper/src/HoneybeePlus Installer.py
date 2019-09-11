@@ -130,7 +130,7 @@ def updateHoneybee():
     for pl in ('ladybug', 'honeybee'):
         userObjectsFolder = os.path.join(
             targetDirectory,
-            r"{}-grasshopper-master\plugin\grasshopper\userObjects".format(pl))
+            r"{}-grasshopper-master/plugin/grasshopper/userObjects".format(pl))
     
         plus_uofolder = os.path.join(uofolder, '{}Plus'.format(pl.capitalize()))
         if not os.path.isdir(plus_uofolder):
