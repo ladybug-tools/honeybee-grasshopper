@@ -64,7 +64,12 @@ def updateHoneybee():
         try:
             targetDirectory = [p for p in sys.path if p.find(r'settings\lib')!= -1][0]
         except IndexError:
-            targetDirectory = sys.path  # target directory for Mac
+            try:  # we might be on a Mac
+                targetDirectory = [p for p in sys.path if p.find(r'Lib')!= -1][0]
+            except IndexError:
+                raise IOError(
+                    'Failed to find a shared path in sys.path to install honeybee.\n' \
+                     'Make sure Grasshopper is installed correctly!')
     
     # delete current folders 
     for f in repos:
