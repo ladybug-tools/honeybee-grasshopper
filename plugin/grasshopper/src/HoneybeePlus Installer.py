@@ -22,7 +22,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.05\nMAY_29_2019'
+ghenv.Component.Message = 'VER 0.0.05\nSEP_11_2019'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -58,16 +58,13 @@ def updateHoneybee():
              'ladybug-comfort', 'ladybug-grasshopper',
              'honeybee', 'honeybee-grasshopper')
     
-    targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
     try:
         targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
-    except IndexError:
-        # there is no scripts in path try to find plugins folder
+    except IndexError:  # there is no scripts in path try to find plugins folder
         try:
             targetDirectory = [p for p in sys.path if p.find(r'settings\lib')!= -1][0]
         except IndexError:
-            raise IOError('Failed to find a shared path in sys.path to install honeybee.\n' \
-                          'Make sure Grasshopper is installed correctly!')
+            targetDirectory = sys.path  # target directory for Mac
     
     # delete current folders 
     for f in repos:
