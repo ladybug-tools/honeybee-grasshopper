@@ -22,7 +22,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.05\nSEP_11_2019'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_20_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -113,7 +113,7 @@ def updateHoneybee():
     
     # copy files to folder.
     for f in repos:
-        if f.endswith('grasshopper'):
+        if f.endswith('honeybee-grasshopper'):
             sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
             libFolder = os.path.join(targetDirectory, f.split('-')[0])
         else:
@@ -128,9 +128,14 @@ def updateHoneybee():
     uofolder = UserObjectFolders[0]
 
     for pl in ('ladybug', 'honeybee'):
-        userObjectsFolder = os.path.join(
-            targetDirectory,
-            r"{}-grasshopper-master/plugin/grasshopper/userObjects".format(pl))
+        if pl == 'ladybug':
+            userObjectsFolder = os.path.join(
+                targetDirectory,
+                r"{}-grasshopper-master/userObjects".format(pl))
+        else:
+            userObjectsFolder = os.path.join(
+                targetDirectory,
+                r"{}-grasshopper-master/plugin/grasshopper/userObjects".format(pl))
     
         plus_uofolder = os.path.join(uofolder, '{}Plus'.format(pl.capitalize()))
         if not os.path.isdir(plus_uofolder):
