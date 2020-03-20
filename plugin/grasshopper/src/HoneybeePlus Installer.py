@@ -131,7 +131,7 @@ def updateHoneybee():
         if pl == 'ladybug':
             userObjectsFolder = os.path.join(
                 targetDirectory,
-                r"{}-grasshopper-master/userObjects".format(pl))
+                r"{}-grasshopper-master/ladybug_grasshopper/user_objects".format(pl))
         else:
             userObjectsFolder = os.path.join(
                 targetDirectory,
