@@ -38,14 +38,13 @@ the points in the grid should fail this measure.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Sunlight Exposure"
 ghenv.Component.NickName = 'ASE'
-ghenv.Component.Message = 'VER 0.0.05\nAUG_10_2019'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_28_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    import ladybug.geometry as lg
-    import ladybug.output as output
+    from ladybug_rhino.fromgeometry import from_point3d
     import ladybug.legend as lp
     import ladybug.color as color
 except ImportError as e:
@@ -62,7 +61,7 @@ if _analysis_grid:
             _threshold_, states, _occ_schedule_, _target_hrs_, _target_area_
         )
 
-    prblm_pts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblm_pts)
+    prblm_pts = (from_point3d(s.location) for s in prblm_pts)
     # convert list of lists to data tree
     try:
         prblm_hrs = output.list_to_tree(prblm_hrs, ghenv.Component.RunCount - 1)

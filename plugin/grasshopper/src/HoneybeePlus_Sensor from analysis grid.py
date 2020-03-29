@@ -22,13 +22,14 @@ Sensor from analysis grid
 
 ghenv.Component.Name = "HoneybeePlus_Sensor from analysis grid"
 ghenv.Component.NickName = 'sensor'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_28_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
+
 try:
-    import ladybug.geometry as lg
+    from ladybug_rhino.fromgeometry import from_point3d
 except ImportError as e:
     raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
 
@@ -38,5 +39,4 @@ if _analysis_grid:
 
     id = _index_ if _index_ is not None else 0
     sensor = _analysis_grid[id]
-    pt = (sensor.location.x, sensor.location.y, sensor.location.z)
-    position = lg.sphere(pt, 0.5)
+    position = from_point3d(sensor.location)

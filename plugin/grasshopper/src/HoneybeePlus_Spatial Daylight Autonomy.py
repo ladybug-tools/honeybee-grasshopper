@@ -38,19 +38,20 @@ per year. The sDA value is expressed as a percentage of area.
 
 ghenv.Component.Name = "HoneybeePlus_Spatial Daylight Autonomy"
 ghenv.Component.NickName = 'sDA'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.05\nMAR_28_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    import ladybug.geometry as lg
+    from ladybug_rhino.fromgeometry import from_point3d
 except ImportError as e:
-    raise ImportError('\nFailed to import ladybug:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import ladybug_rhino:\n\t{}'.format(e))
 
 if _analysis_grid:
     states = _analysis_grid.parse_blind_states(blind_states_)
     sDA, DA, prblm_Pts = _analysis_grid.spatial_daylight_autonomy(
          _threshold_, _target_DA_, states, _occ_schedule_
     )
-    prblm_Pts = (lg.point(s.location.x, s.location.y, s.location.z) for s in prblm_Pts)
+
+    prblm_Pts = (from_point3d(s.location) for s in prblm_Pts)
