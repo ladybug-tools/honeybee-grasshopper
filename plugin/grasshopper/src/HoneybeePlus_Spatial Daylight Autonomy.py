@@ -54,4 +54,4 @@ if _analysis_grid:
          _threshold_, _target_DA_, states, _occ_schedule_
     )
 
-    prblm_Pts = (from_point3d(s.location) for s in prblm_Pts)
+    prblm_pts = (from_point3d(s.location) for s in prblm_Pts)
