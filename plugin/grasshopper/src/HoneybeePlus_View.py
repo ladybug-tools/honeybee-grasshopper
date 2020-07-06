@@ -47,15 +47,15 @@ Honeybee View.
 
 ghenv.Component.Name = "HoneybeePlus_View"
 ghenv.Component.NickName = 'view'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.radiance.view import View
+    from honeybee_plus.radiance.view import View
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _v_location and _v_direction:

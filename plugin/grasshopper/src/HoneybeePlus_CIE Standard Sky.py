@@ -28,16 +28,16 @@ A point-in-time standard Radiance CIE sky.
 
 ghenv.Component.Name = "HoneybeePlus_CIE Standard Sky"
 ghenv.Component.NickName = 'CIESky'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.radiance.sky.cie import CIE
+    from honeybee_plus.radiance.sky.cie import CIE
     from ladybug.location import Location
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _location:
     if not hasattr(_location, 'isLocation'):

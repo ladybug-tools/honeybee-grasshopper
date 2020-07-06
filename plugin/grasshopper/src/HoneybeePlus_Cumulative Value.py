@@ -31,7 +31,7 @@ solar access and radiation studies.
 
 ghenv.Component.Name = "HoneybeePlus_Cumulative Value"
 ghenv.Component.NickName = 'cumValue'
-ghenv.Component.Message = 'VER 0.0.05\nAPR_27_2019'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"

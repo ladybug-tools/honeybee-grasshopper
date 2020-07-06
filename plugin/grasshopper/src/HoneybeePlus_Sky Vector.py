@@ -26,16 +26,16 @@ A sky vector representing sky conditions at a single hour of the year.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Vector"
 ghenv.Component.NickName = 'skyVector'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.radiance.sky.skymatrix import SkyMatrix
+    from honeybee_plus.radiance.sky.skymatrix import SkyMatrix
     from ladybug.dt import DateTime
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
         
     raise ImportError('{}\n\t{}'.format(msg, e))
 

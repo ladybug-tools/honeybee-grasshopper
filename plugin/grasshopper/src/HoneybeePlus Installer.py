@@ -22,7 +22,7 @@ C:\Users\%USERNAME%\AppData\Roaming\McNeel\Rhinoceros\6.0\scripts
 
 ghenv.Component.Name = "HoneybeePlus Installer"
 ghenv.Component.NickName = "HBInstaller"
-ghenv.Component.Message = 'VER 0.0.05\nMAR_20_2020'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = "05 :: Developers"
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
@@ -54,9 +54,15 @@ def updateHoneybee():
     This code will download honeybee and honeybee[+] library from github and
     update the current installation.
     """
-    repos = ('ladybug', 'ladybug-geometry', 'ladybug-rhino', 'ladybug-dotnet',
-             'ladybug-comfort', 'ladybug-grasshopper',
-             'honeybee', 'honeybee-grasshopper')
+    lb_repos = ['ladybug', 'ladybug-geometry', 'ladybug-rhino',
+                'ladybug-comfort', 'ladybug-grasshopper']
+    hb_repos = ['honeybee', 'honeybee-grasshopper']
+    home_folder = os.getenv('HOME') or os.path.expanduser('~')
+    lb_install = os.path.join(home_folder, 'ladybug_tools', 'python', 'Lib', 'site-packages')
+    if lb_install in sys.path:
+        repos = hb_repos
+    else:
+        repos = lb_repos + hb_repos
     
     try:
         targetDirectory = [p for p in sys.path if p.find('scripts')!= -1][0]
@@ -73,7 +79,8 @@ def updateHoneybee():
     
     # delete current folders 
     for f in repos:
-        libFolder = os.path.join(targetDirectory, f.replace('-', '_'))
+        libFolder = os.path.join(targetDirectory, f.replace('-', '_')) \
+            if f != 'honeybee' else os.path.join(targetDirectory, 'honeybee_plus')
         if os.path.isdir(libFolder):
             try:
                 print 'removing {}'.format(libFolder)
@@ -115,10 +122,11 @@ def updateHoneybee():
     for f in repos:
         if f.endswith('honeybee-grasshopper'):
             sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
-            libFolder = os.path.join(targetDirectory, f.split('-')[0])
+            libFolder = os.path.join(targetDirectory, 'honeybee_plus')
         else:
             sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.replace('-', '_'))
-            libFolder = os.path.join(targetDirectory, f.replace('-', '_'))
+            libFolder = os.path.join(targetDirectory, f.replace('-', '_')) \
+                if f != 'honeybee' else os.path.join(targetDirectory, 'honeybee_plus')
         if not os.path.isdir(libFolder):
             os.mkdir(libFolder)
         print 'Copying {} source code to {}'.format(f, libFolder)
@@ -179,11 +187,11 @@ if _update:
         raise Exception("Failed to update honeybee[+]:\n{}".format(e))
     else:
         try:
-            import honeybee
+            import honeybee_plus
         except ImportError as e:
             raise ImportError('Failed to import honeybee[+]:\n{}'.format(e))
         else:
-            print "\n\nImported honeybee[+] from {}\nVviiiizzzz...".format(honeybee.__file__)
+            print "\n\nImported honeybee[+] from {}\nVviiiizzzz...".format(honeybee_plus.__file__)
             print "Restart Grasshopper and Rhino to load the new library."
 else:
     print 'Set update to True to update ladybug[+] and honeybee[+]!'

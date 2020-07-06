@@ -21,15 +21,15 @@ Convert hdr files to tiff files.
 
 ghenv.Component.Name = "HoneybeePlus_HDR to Tiff"
 ghenv.Component.NickName = 'hdr2tiff'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
 
 try:
-    from honeybee.radiance.command.raTiff import RaTiff
+    from honeybee_plus.radiance.command.raTiff import RaTiff
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _convert == True:
     tiff = []

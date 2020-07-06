@@ -28,17 +28,17 @@ Window Group State
 
 ghenv.Component.Name = "HoneybeePlus_WindowGroup State"
 ghenv.Component.NickName = 'winGroupState'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.surfaceproperties import SurfaceProperties, SurfaceState
-    from honeybee.surfacetype import Window
-    from honeybee.radiance.properties import RadianceProperties
+    from honeybee_plus.surfaceproperties import SurfaceProperties, SurfaceState
+    from honeybee_plus.surfacetype import Window
+    from honeybee_plus.radiance.properties import RadianceProperties
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _name and (rad_mat_ or HB_srfs_):
     if rad_mat_:

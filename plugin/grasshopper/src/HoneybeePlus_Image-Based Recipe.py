@@ -26,15 +26,15 @@ Point-in-time image-based recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Image-Based Recipe"
 ghenv.Component.NickName = 'imageBasedRecipe'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.radiance.recipe.pointintime.imagebased import ImageBased
+    from honeybee_plus.radiance.recipe.pointintime.imagebased import ImageBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _sky and _views:

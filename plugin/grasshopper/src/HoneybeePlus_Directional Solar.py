@@ -42,7 +42,7 @@ at every timestep of a Wea.
 
 ghenv.Component.Name = "HoneybeePlus_Directional Solar"
 ghenv.Component.NickName = 'directionSolar'
-ghenv.Component.Message = 'VER 0.0.05\nJAN_24_2019'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"
