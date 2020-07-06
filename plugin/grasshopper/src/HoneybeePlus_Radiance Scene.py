@@ -26,15 +26,15 @@ the geometries and writing the files in parametric studies.
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Scene"
 ghenv.Component.NickName = 'radScene'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.radiance.staticscene import StaticScene
+    from honeybee_plus.radiance.staticscene import StaticScene
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _rad_files and _rad_files[0] is not None:
     rad_scene = StaticScene(_rad_files, _copy_local_, _overwrite_)

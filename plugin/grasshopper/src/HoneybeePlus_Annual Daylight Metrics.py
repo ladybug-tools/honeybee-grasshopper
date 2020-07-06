@@ -37,7 +37,7 @@ Annual Daylight Metrics.
 
 ghenv.Component.Name = "HoneybeePlus_Annual Daylight Metrics"
 ghenv.Component.NickName = 'annualMetrics'
-ghenv.Component.Message = 'VER 0.0.05\nAUG_10_2019'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"

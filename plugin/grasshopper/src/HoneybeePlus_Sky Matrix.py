@@ -27,15 +27,15 @@ A sky matrix representing sky conditions over multiple hours of the year.
 
 ghenv.Component.Name = "HoneybeePlus_Sky Matrix"
 ghenv.Component.NickName = 'skyMatrix'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.radiance.sky.skymatrix import SkyMatrix
+    from honeybee_plus.radiance.sky.skymatrix import SkyMatrix
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _wea:

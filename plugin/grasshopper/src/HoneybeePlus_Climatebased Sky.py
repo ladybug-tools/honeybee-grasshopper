@@ -25,15 +25,15 @@ A point-in-time climate-based sky (derived from a WEA).
 
 ghenv.Component.Name = "HoneybeePlus_Climatebased Sky"
 ghenv.Component.NickName = 'climateBased'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.radiance.sky.climatebased import ClimateBased
+    from honeybee_plus.radiance.sky.climatebased import ClimateBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _wea:
     # set default values if they are not set

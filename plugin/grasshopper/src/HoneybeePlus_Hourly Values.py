@@ -27,7 +27,7 @@ Hourly results for an analysis grid for a single hour of the year.
 
 ghenv.Component.Name = "HoneybeePlus_Hourly Values"
 ghenv.Component.NickName = 'hourlyValues'
-ghenv.Component.Message = 'VER 0.0.05\nAPR_27_2019'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
@@ -35,9 +35,9 @@ ghenv.Component.AdditionalHelpFromDocStrings = "4"
 from ladybug.dt import DateTime
 
 try:
-    from honeybee.radiance.recipe.solaraccess.gridbased import SolarAccessGridBased
+    from honeybee_plus.radiance.recipe.solaraccess.gridbased import SolarAccessGridBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _analysis_grid:
     _modes = ('total', 'direct', 'diffuse')

@@ -20,15 +20,15 @@ Occupancy Schedule from hourly values.
 
 ghenv.Component.Name = "HoneybeePlus_Occupancy Schedule"
 ghenv.Component.NickName = 'occSchedule'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.schedule import Schedule
+    from honeybee_plus.schedule import Schedule
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _values:
     schedule = Schedule(_values, hoys_)

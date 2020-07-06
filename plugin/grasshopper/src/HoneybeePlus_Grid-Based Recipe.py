@@ -25,15 +25,15 @@ A point-in-time grid-based recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Recipe"
 ghenv.Component.NickName = 'gridBasedRecipe'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "2"
 
 try:
-    from honeybee.radiance.recipe.pointintime.gridbased import GridBased
+    from honeybee_plus.radiance.recipe.pointintime.gridbased import GridBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _sky and _analysis_grids and _analysis_grids[0] is not None:

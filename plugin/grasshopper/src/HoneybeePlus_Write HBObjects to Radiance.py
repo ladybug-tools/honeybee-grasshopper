@@ -24,15 +24,15 @@ Write honeybee objects to a Radiance file.
 
 ghenv.Component.Name = "HoneybeePlus_Write HBObjects to Radiance"
 ghenv.Component.NickName = 'HBToRad'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.radiance.radfile import RadFile
+    from honeybee_plus.radiance.radfile import RadFile
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _HB_objects and _folder and _file_name and _write:

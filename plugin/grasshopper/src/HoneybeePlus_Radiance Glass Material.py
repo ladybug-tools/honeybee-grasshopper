@@ -20,15 +20,15 @@ Radiance Glass Material from Visible Transmitance
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Glass Material"
 ghenv.Component.NickName = 'radGlassMat'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '01 :: Daylight :: Materials'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.radiance.material.glass import Glass
+    from honeybee_plus.radiance.material.glass import Glass
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _name:
     _t_vis_ = 0.6 if _t_vis_ is None else _t_vis_

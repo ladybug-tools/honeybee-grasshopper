@@ -29,15 +29,15 @@ Annual three-pahse daylight Recipe.
 
 ghenv.Component.Name = "HoneybeePlus_Grid-Based Three-Phase Daylight Recipe"
 ghenv.Component.NickName = 'threePhaseGBRecipe'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"
 
 try:
-    from honeybee.radiance.recipe.threephase.gridbased import ThreePhaseGridBased
+    from honeybee_plus.radiance.recipe.threephase.gridbased import ThreePhaseGridBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _skymtx and _analysis_grids:

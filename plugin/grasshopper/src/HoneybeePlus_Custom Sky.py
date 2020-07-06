@@ -27,16 +27,16 @@ A point-in-time custom sky.
 
 ghenv.Component.Name = "HoneybeePlus_Custom Sky"
 ghenv.Component.NickName = 'customSky'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.radiance.sky.climatebased import ClimateBased
+    from honeybee_plus.radiance.sky.climatebased import ClimateBased
     from ladybug.location import Location
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 if _location and _dir_rad is not None and _dif_rad is not None:
     if not hasattr(_location, 'isLocation'):

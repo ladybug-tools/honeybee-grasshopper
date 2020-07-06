@@ -23,7 +23,7 @@ at each timestep of the file.
 
 ghenv.Component.Name = "HoneybeePlus_Deconstruct Wea"
 ghenv.Component.NickName = 'decnstrWea'
-ghenv.Component.Message = 'VER 0.0.05\nJAN_24_2019'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '02 :: Daylight :: Light Sources'
 ghenv.Component.AdditionalHelpFromDocStrings = "0"

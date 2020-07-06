@@ -27,15 +27,15 @@ Annual daylight coefficient grid-based recipe.
 
 ghenv.Component.Name = "HoneybeePlus_DC Grid-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffGBRecipe'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.radiance.recipe.daylightcoeff.gridbased import DaylightCoeffGridBased
+    from honeybee_plus.radiance.recipe.daylightcoeff.gridbased import DaylightCoeffGridBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _skymtx and _analysis_grids and _analysis_grids[0] != None:

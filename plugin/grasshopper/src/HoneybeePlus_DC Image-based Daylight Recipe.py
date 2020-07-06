@@ -27,15 +27,15 @@ Annual daylight coefficient image-based recipe.
 
 ghenv.Component.Name = "HoneybeePlus_DC Image-based Daylight Recipe"
 ghenv.Component.NickName = 'DCoeffIBRecipe'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "3"
 
 try:
-    from honeybee.radiance.recipe.daylightcoeff.imagebased import DaylightCoeffImageBased
+    from honeybee_plus.radiance.recipe.daylightcoeff.imagebased import DaylightCoeffImageBased
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if _skymtx and _views:

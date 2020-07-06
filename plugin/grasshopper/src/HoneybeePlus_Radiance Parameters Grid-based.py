@@ -38,15 +38,15 @@ Here is my favorite presentation by John Mardaljevic: http://radiance-online.org
 
 ghenv.Component.Name = "HoneybeePlus_Radiance Parameters Grid-based"
 ghenv.Component.NickName = 'RADParGridBased'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '03 :: Daylight :: Recipe'
 ghenv.Component.AdditionalHelpFromDocStrings = "5"
 
 try:
-    from honeybee.radiance.recipe import parameters as param
+    from honeybee_plus.radiance.recipe import parameters as param
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
     
 
 _complexity_ = _complexity_ or 0

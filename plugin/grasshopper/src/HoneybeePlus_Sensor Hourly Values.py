@@ -29,7 +29,7 @@ Hourly results for a sensor for several hours during the year.
 
 ghenv.Component.Name = "HoneybeePlus_Sensor Hourly Values"
 ghenv.Component.NickName = 'senHourlyValues'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '04 :: Daylight :: Daylight'
 ghenv.Component.AdditionalHelpFromDocStrings = "4"

@@ -41,16 +41,16 @@ Honeybee Surface
 
 ghenv.Component.Name = "HoneybeePlus_Honeybee Surface"
 ghenv.Component.NickName = 'HBSurface'
-ghenv.Component.Message = 'VER 0.0.05\nOCT_22_2018'
+ghenv.Component.Message = 'VER 0.0.06\nJUL_07_2020'
 ghenv.Component.Category = "HoneybeePlus"
 ghenv.Component.SubCategory = '00 :: Create'
 ghenv.Component.AdditionalHelpFromDocStrings = "1"
 
 try:
-    from honeybee.hbsurface import HBSurface
-    from honeybee.radiance.properties import RadianceProperties
+    from honeybee_plus.hbsurface import HBSurface
+    from honeybee_plus.radiance.properties import RadianceProperties
 except ImportError as e:
-    raise ImportError('\nFailed to import honeybee:\n\t{}'.format(e))
+    raise ImportError('\nFailed to import honeybee_plus:\n\t{}'.format(e))
 
 
 if len(_geo)!=0 and _geo[0]!=None:
