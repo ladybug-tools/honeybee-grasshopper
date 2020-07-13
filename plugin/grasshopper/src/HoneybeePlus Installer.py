@@ -129,6 +129,8 @@ def updateHoneybee():
                 if f != 'honeybee' else os.path.join(targetDirectory, 'honeybee_plus')
         if not os.path.isdir(libFolder):
             os.mkdir(libFolder)
+        if sourceFolder.endswith('honeybee'):
+            sourceFolder=sourceFolder+'_plus'  #addition to find correct path
         print 'Copying {} source code to {}'.format(f, libFolder)
         copy_tree_full(sourceFolder, libFolder)
     
