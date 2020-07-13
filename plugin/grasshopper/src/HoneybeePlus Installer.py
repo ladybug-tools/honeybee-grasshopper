@@ -121,11 +121,13 @@ def updateHoneybee():
     # copy files to folder.
     for f in repos:
         if f.endswith('honeybee-grasshopper'):
-            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0])
+            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.split('-')[0]) \
+                if f != 'honeybee-grasshopper' else os.path.join(targetDirectory, 'honeybee_plus')
             libFolder = os.path.join(targetDirectory, 'honeybee_plus')
         else:
-            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.replace('-', '_'))
-            libFolder = os.path.join(targetDirectory, f.replace('-', '_')) \
+            sourceFolder = os.path.join(targetDirectory, r"{}-master".format(f), f.replace('-', '_')) \
+                if f != 'honeybee' else os.path.join(targetDirectory, 'honeybee_plus')
+            libFolder = os.path.join(targetDirectory, f.replace('-', '_'))  \
                 if f != 'honeybee' else os.path.join(targetDirectory, 'honeybee_plus')
         if not os.path.isdir(libFolder):
             os.mkdir(libFolder)
