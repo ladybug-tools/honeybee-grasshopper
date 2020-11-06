@@ -12,7 +12,7 @@ Create a WEA object from an EPW.
 -
 
     Args:
-        _epw_file = Fullpath to epw weather file.
+        _epw_file: Fullpath to epw weather file.
         timestep_: An integer representing the timestep with which to make the 
             WEA object.  Default is set to 1 for 1 step per hour of the year.
     Returns:
